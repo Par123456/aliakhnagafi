@@ -977,7 +977,6 @@ ul {
     border-radius: var(--border-radius);
     font-family: 'Vazirmatn', sans-serif;
     font-size: 1em;
-    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
     text-align: right; /* RTL */
 }
 
