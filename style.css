@@ -1,4 +1,4 @@
-/* style.css - Upgraded Cool Styling with Fixes and Enhancements - Loader Fixed */
+/* style.css - Upgraded with ADA Compliance, Fallbacks, and Enhancements */
 
 :root {
     --primary-color: #004080;
@@ -15,7 +15,7 @@
     --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
     --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --border-radius: 12px;
-    --font-family: 'Vazirmatn', sans-serif;
+    --font-family: 'Vazirmatn', Tahoma, sans-serif; /* Fallback for CSP */
 }
 
 * {
@@ -39,7 +39,7 @@ body {
     text-align: right;
 }
 
-/* Fixed Loader - Immediate Hide */
+/* Fixed Loader - Immediate Hide with Fallback */
 .loader {
     position: fixed;
     top: 0;
@@ -360,7 +360,6 @@ main {
     display: none;
     background: linear-gradient(135deg, var(--bg-light), #e9ecef);
     padding: 40px;
-    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     align-items: center;
@@ -370,7 +369,7 @@ main {
     display: grid;
 }
 
-.hero-content h2 {
+.hero-content h3 {
     font-size: 2.8em;
     color: var(--primary-color);
     margin-bottom: 20px;
@@ -612,10 +611,6 @@ main {
     box-shadow: var(--shadow);
 }
 
-.about-card .card-icon {
-    display: none; /* Use pseudo instead */
-}
-
 .about-card:hover {
     background: var(--white);
     box-shadow: var(--shadow-hover);
@@ -691,6 +686,51 @@ main {
 
 .values-list li:hover {
     transform: translateX(-5px);
+}
+
+/* Staff Directory */
+.staff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.staff-card {
+    background: var(--bg-light);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.staff-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.staff-photo {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    border-radius: 50%;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5em;
+    color: var(--white);
+}
+
+.staff-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.staff-card p {
+    color: var(--text-light);
+    margin-bottom: 5px;
 }
 
 /* News Enhancements */
@@ -1486,7 +1526,7 @@ footer {
         gap: 20px;
     }
 
-    .hero-content h2 {
+    .hero-content h3 {
         font-size: 2.2em;
     }
 
@@ -1502,7 +1542,8 @@ footer {
     .dashboard-grid,
     .about-grid,
     .team-grid,
-    .links-grid {
+    .links-grid,
+    .staff-grid {
         grid-template-columns: 1fr;
     }
 
@@ -1616,4 +1657,4 @@ footer {
 .error { border-color: var(--error-color) !important; background: rgba(220,53,69,0.1); }
 .success { border-color: var(--success-color) !important; background: rgba(40,167,69,0.1); }
 
-/* End of CSS - Loader fixed with display: none and shorter animation. */
+/* End of CSS - Enhanced with ADA labels, fallbacks, and staff section. */
