@@ -689,6 +689,30 @@ main {
 }
 
 /* Staff Directory */
+.staff-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+#staff-search {
+    flex: 1;
+    max-width: 300px;
+    padding: 12px;
+    border: 1px solid var(--bg-light);
+    border-radius: var(--border-radius);
+}
+
+#staff-filter {
+    padding: 10px;
+    border: 1px solid var(--bg-light);
+    border-radius: var(--border-radius);
+    background: var(--white);
+}
+
 .staff-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
