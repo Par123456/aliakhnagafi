@@ -1062,15 +1062,23 @@ document.addEventListener('DOMContentLoaded', () => {
         if (password === ADMIN_PASSWORD) {
             if (adminOverlay) adminOverlay.classList.add('active');
             initAdminPanel(); // Initialize forms and lists
-        } else if (password !== null) { // If user didn't cancel the prompt
-            alert('رمز عبور اشتباه است.');
+        } else { // اگر رمز عبور اشتباه بود یا کاربر لغو کرد
+            // نمایش پیام مناسب (قبلاً برای اشتباه بودن رمز بود)
+            if (password !== null) { // اگر کاربر لغو نکرده و رمز اشتباه بوده
+                alert('رمز عبور اشتباه است.');
+            }
+            // **اضافه شدن این قطعه کد**: در هر صورت (رمز اشتباه یا لغو)، پارامتر ?admin را از URL حذف کنید.
+            if (window.history.replaceState) {
+                const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                window.history.replaceState({path:newUrl},'',newUrl);
+            }
         }
     }
 
     if (closeAdminBtn) {
         closeAdminBtn.addEventListener('click', () => {
             if (adminOverlay) adminOverlay.classList.remove('active');
-            // Optionally, remove the ?admin from the URL for cleaner browsing after closing
+            // این قسمت کد شما قبلاً برای حذف ?admin وجود داشت و کاملاً صحیح است.
             if (window.history.replaceState) {
                 const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
                 window.history.replaceState({path:newUrl},'',newUrl);
