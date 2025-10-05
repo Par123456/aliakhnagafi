@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Screen - Fixed -->
+    <!-- Loading Screen - Fixed with Immediate Hide on Error -->
     <div id="loader" class="loader">
         <div class="loader-content">
             <div class="spinner"></div>
@@ -116,22 +116,22 @@
                 <div class="stat-card">
                     <div class="stat-icon">👨‍🎓</div>
                     <h3>دانش‌آموزان فعال</h3>
-                    <p id="student-count" class="stat-number">۵۲۰</p>
+                    <p id="student-count" class="stat-number" data-target="520">۰</p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">👨‍🏫</div>
                     <h3>معلمان مجرب</h3>
-                    <p id="teacher-count" class="stat-number">۳۵</p>
+                    <p id="teacher-count" class="stat-number" data-target="35">۰</p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">📚</div>
                     <h3>دروس تخصصی</h3>
-                    <p class="stat-number">۱۸</p>
+                    <p class="stat-number" data-target="18">۰</p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">🏆</div>
                     <h3>رتبه‌های استانی</h3>
-                    <p class="stat-number">۲۵+</p>
+                    <p class="stat-number" data-target="25">۰</p>
                 </div>
             </div>
             <div class="visitor-stats animate-on-scroll">
@@ -172,18 +172,15 @@
             <div class="about-content">
                 <p>این دبیرستان از سال ۱۳۵۹ در کرمانشاه فعالیت می‌کند و با تمرکز بر آموزش‌های علمی، دینی و مهارتی، بیش از ۵۰۰ دانش‌آموز را تربیت کرده است. ما بر نوآوری در آموزش تأکید داریم و برنامه‌های فوق‌برنامه مانند المپیادها و کارگاه‌های مهارت‌آموزی را اجرا می‌کنیم.</p>
                 <div class="about-grid animate-on-scroll">
-                    <div class="about-card">
-                        <div class="card-icon">📜</div>
+                    <div class="about-card" data-icon="📜">
                         <h3>تاریخچه</h3>
                         <p>تأسیس به یاد شهید علی اکبر نجفی، با هدف پرورش نسل انقلابی.</p>
                     </div>
-                    <div class="about-card">
-                        <div class="card-icon">🎯</div>
+                    <div class="about-card" data-icon="🎯">
                         <h3>مأموریت ما</h3>
                         <p>ایجاد محیطی پویا برای یادگیری و رشد شخصیتی.</p>
                     </div>
-                    <div class="about-card">
-                        <div class="card-icon">🔮</div>
+                    <div class="about-card" data-icon="🔮">
                         <h3>چشم‌انداز آینده</h3>
                         <p>تبدیل به قطب آموزشی غرب کشور تا سال ۱۴۱۰.</p>
                     </div>
@@ -349,7 +346,7 @@
         </section>
 
         <!-- Admin Section - Advanced Dashboard -->
-        <section id="admin" class="section hidden fade-in" style="display:none;">
+        <section id="admin" class="section hidden fade-in">
             <h2>پنل مدیریت پیشرفته</h2>
             <div id="admin-login-container">
                 <form id="admin-login" class="login-form">
@@ -457,7 +454,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <img id="modal-image" src="" alt="تصویر بزرگ">
-            <div class="modal-caption"></div>
+            <div id="modal-caption" class="modal-caption"></div>
         </div>
     </div>
 
