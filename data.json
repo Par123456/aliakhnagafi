@@ -1,0 +1,37 @@
+{
+  "notification": {
+    "text": "به سایت مدرسه شهید علی اکبر نجفی خوش آمدید! شروع سال تحصیلی جدید را تبریک می‌گوییم.",
+    "visible": true
+  },
+  "newsData": [
+    { "id": "news1", "title": "افتتاح آزمایشگاه فیزیک جدید", "date": "۱۴۰۲/۰۸/۰۱", "image": "https://picsum.photos/id/200/400/250", "description": "با حضور مسئولین و دانش‌آموزان، آزمایشگاه مجهز فیزیک مدرسه افتتاح شد." },
+    { "id": "news2", "title": "برگزاری المپیاد ریاضی داخلی", "date": "۱۴۰۲/۰۷/۲۵", "image": "https://picsum.photos/id/201/400/250", "description": "المپیاد ریاضی با هدف شناسایی استعدادهای برتر در مدرسه برگزار گردید." },
+    { "id": "news3", "title": "کسب رتبه برتر در مسابقات رباتیک استانی", "date": "۱۴۰۲/۰۷/۱۸", "image": "https://picsum.photos/id/202/400/250", "description": "تیم رباتیک مدرسه شهید نجفی، موفق به کسب مقام اول در مسابقات استانی شد." },
+    { "id": "news4", "title": "کارگاه خلاقیت و نوآوری", "date": "۱۴۰۲/۰۷/۱۰", "image": "https://picsum.photos/id/203/400/250", "description": "کارگاهی دو روزه با محوریت خلاقیت و ایده‌پردازی برای دانش‌آموزان برگزار شد." },
+    { "id": "news5", "title": "آغاز ثبت نام کلاس‌های فوق برنامه", "date": "۱۴۰۲/۰۷/۰۵", "image": "https://picsum.photos/id/204/400/250", "description": "ثبت نام برای کلاس‌های تقویتی و هنری آغاز شد. علاقه‌مندان می‌توانند اقدام کنند." }
+  ],
+  "eventsData": [
+    { "id": "event1", "title": "جشنواره پروژه‌های علمی دانش‌آموزی", "date": "2025-12-15T09:00:00", "description": "نمایش دستاوردهای علمی و پژوهشی دانش‌آموزان در سطح استان." },
+    { "id": "event2", "title": "همایش اولیا و مربیان", "date": "2025-11-20T16:00:00", "description": "گفتگو و تبادل نظر بین خانواده‌ها و کادر آموزشی مدرسه." },
+    { "id": "event3", "title": "اردوی فرهنگی و تفریحی پاییزه", "date": "2025-11-05T08:30:00", "description": "بازدید از اماکن تاریخی و تفریحی کرمانشاه با دانش‌آموزان." }
+  ],
+  "absenteesData": [
+    { "id": "absentee1", "name": "سارا احمدی", "class": "دهم تجربی", "date": "۱۴۰۲/۰۸/۰۱" },
+    { "id": "absentee2", "name": "امیر محمدی", "class": "یازدهم ریاضی", "date": "۱۴۰۲/۰۷/۳۰" },
+    { "id": "absentee3", "name": "زهرا رضایی", "class": "نهم", "date": "۱۴۰۲/۰۷/۲۹" },
+    { "id": "absentee4", "name": "علی حسینی", "class": "دهم انسانی", "date": "۱۴۰۲/۰۷/۲۹" }
+  ],
+  "staffData": [
+    { "id": "staff1", "name": "دکتر فاطمه اکبری", "position": "مدیر مدرسه", "image": "https://picsum.photos/id/64/200/200", "education": "دکترای مدیریت آموزشی", "contact": "akbari.f@najafischool.ir" },
+    { "id": "staff2", "name": "مهندس حسین رضایی", "position": "معاون آموزشی", "image": "https://picsum.photos/id/83/200/200", "education": "کارشناسی ارشد مهندسی", "contact": "rezaei.h@najafischool.ir" },
+    { "id": "staff3", "name": "خانم مریم نوری", "position": "معلم ریاضی", "image": "https://picsum.photos/id/82/200/200", "education": "کارشناسی ریاضیات", "contact": "nouri.m@najafischool.ir" },
+    { "id": "staff4", "name": "آقای سعید کریمی", "position": "معلم علوم", "image": "https://picsum.photos/id/81/200/200", "education": "کارشناسی ارشد فیزیک", "contact": "karimi.s@najafischool.ir" }
+  ],
+  "galleryImages": [
+    "https://picsum.photos/id/219/800/600",
+    "https://picsum.photos/id/212/800/600",
+    "https://picsum.photos/id/237/800/600",
+    "https://picsum.photos/id/238/800/600",
+    "https://picsum.photos/id/257/800/600"
+  ]
+}
