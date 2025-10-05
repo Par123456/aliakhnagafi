@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let notificationText = localStorage.getItem('notificationText') || defaultNotificationMessage;
     let isNotificationVisible = localStorage.getItem('isNotificationVisible') !== 'false'; // Default to visible
 
+    // Use specific image IDs from picsum.photos for school-appropriate themes
     let newsData = JSON.parse(localStorage.getItem('newsData')) || [
         { id: 1, title: 'افتتاح آزمایشگاه فیزیک جدید', date: '۱۴۰۲/۰۸/۰۱', image: 'https://picsum.photos/id/200/200/150', description: 'با حضور مسئولین و دانش‌آموزان، آزمایشگاه مجهز فیزیک مدرسه افتتاح شد.' },
         { id: 2, title: 'برگزاری المپیاد ریاضی داخلی', date: '۱۴۰۲/۰۷/۲۵', image: 'https://picsum.photos/id/201/200/150', description: 'المپیاد ریاضی با هدف شناسایی استعدادهای برتر در مدرسه برگزار گردید.' },
@@ -41,11 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const galleryImages = [
-        'https://picsum.photos/id/1018/800/600', // School exterior
-        'https://picsum.photos/id/1015/800/600', // Classroom
-        'https://picsum.photos/id/1016/800/600', // Lab
-        'https://picsum.photos/id/1019/800/600', // Library
-        'https://picsum.photos/id/1020/800/600'  // Student activity
+        'https://picsum.photos/id/219/800/600',  // School playground/activity
+        'https://picsum.photos/id/212/800/600',  // Classroom interior
+        'https://picsum.photos/id/237/800/600',  // Students walking in hallway
+        'https://picsum.photos/id/238/800/600',  // Library/study area
+        'https://picsum.photos/id/257/800/600'   // Science lab equipment
     ];
 
     // --- Header & Navigation Logic ---
@@ -366,24 +367,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Helper to convert Persian date string "YYYY/MM/DD" to "YYYY-MM-DD" for Date object
+    // NOTE: This is a simplistic direct replacement. For accurate conversion across centuries,
+    // a full Jalaali library is required. For this "vanilla JS" context, we assume
+    // that sorting these strings is sufficient for the user's perception of "newest first"
+    // without full calendar conversion, as direct JS Date parsing of Jalaali year is incorrect.
     function convertPersianToGregorianString(persianDate) {
-        // This is a simplistic direct replacement, assuming year is in current century or similar.
-        // For accurate conversion across centuries, a full Jalaali library is required.
-        // E.g., "۱۴۰۲/۰۷/۰۹" -> "1402-07-09" (which JS Date object might misinterpret as year 1402)
-        // For demonstration purposes, we assume JS Date handles "YYYY-MM-DD" well for modern years.
-        // In a real system, you'd use a library like 'jalaali-js'.
         const parts = persianDate.split('/');
         if (parts.length === 3) {
-            // Acknowledge that direct JS Date parsing of Jalaali year is incorrect.
-            // For this client-side example, we'll keep the string format which
-            // sorting by string might work for *chronologically increasing Jalaali dates*.
-            // For true date operations, this requires a Jalaali-to-Gregorian conversion.
-            // Example: "1402/07/09"
-            // Let's assume for this "vanilla JS" context that sorting these strings is sufficient
-            // for the user's perception of "newest first" without full calendar conversion.
-            // A more accurate (but violating "no libs") approach would be:
-            // const g = jalaali.toGregorian(parseInt(parts[0]), parseInt(parts[1]), parseInt(parts[2]));
-            // return `${g.gy}-${String(g.gm).padStart(2, '0')}-${String(g.gd).padStart(2, '0')}`;
             return `${parts[0].padStart(4, '0')}-${parts[1].padStart(2, '0')}-${parts[2].padStart(2, '0')}`;
         }
         return persianDate; // Return as is if format is unexpected
@@ -810,8 +800,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Admin Panel Opening/Closing ---
-    // Listen for a secret double-click on the body to trigger password prompt
-    document.body.addEventListener('dblclick', () => {
+    // Check for '?admin' in URL query parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('admin')) {
         const password = prompt('لطفاً رمز عبور مدیریت را وارد کنید:');
         if (password === ADMIN_PASSWORD) {
             if (adminOverlay) adminOverlay.classList.add('active');
@@ -819,11 +810,16 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (password !== null) { // If user didn't cancel the prompt
             alert('رمز عبور اشتباه است.');
         }
-    });
+    }
 
     if (closeAdminBtn) {
         closeAdminBtn.addEventListener('click', () => {
             if (adminOverlay) adminOverlay.classList.remove('active');
+            // Optionally, remove the ?admin from the URL for cleaner browsing after closing
+            if (window.history.replaceState) {
+                const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                window.history.replaceState({path:newUrl},'',newUrl);
+            }
         });
     }
 }); // End DOMContentLoaded
