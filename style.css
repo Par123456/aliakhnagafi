@@ -1141,10 +1141,12 @@ textarea {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 3000; /* Highest z-index */
-    justify-content: center;
-    align-items: center;
-    overflow-y: auto; /* Allow scrolling for content */
-    padding: 20px 0;
+    /* Updated for better centering and overflow handling */
+    display: flex; /* Make it a flex container */
+    justify-content: center; /* Center horizontally */
+    align-items: flex-start; /* Align to top, allow content to scroll down */
+    overflow-y: auto; /* Allow scrolling for content that exceeds viewport height */
+    padding: 20px 0; /* Add some vertical padding */
 }
 
 .admin-panel {
@@ -1152,11 +1154,12 @@ textarea {
     padding: 30px;
     border-radius: var(--border-radius);
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-    max-width: 900px; /* Increased max-width for more admin content */
-    width: 95%;
+    max-width: 1000px; /* Increased max-width for more admin content */
+    width: 95%; /* Use a percentage for better responsiveness */
     position: relative;
     color: var(--text-color);
     text-align: right; /* RTL */
+    margin: 20px auto; /* Add vertical margin for alignment, and auto horizontal margin for centering */
 }
 
 .admin-panel h2 {
@@ -1166,12 +1169,18 @@ textarea {
     text-align: center;
 }
 
-.admin-panel > p { /* Intro text */
+.admin-panel > p.admin-warning { /* Intro text */
     text-align: center;
     margin-bottom: 30px;
     font-size: 0.9em;
     opacity: 0.8;
+    color: #e74c3c; /* Make warning stand out */
+    border: 1px solid #e74c3c;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fcebeb;
 }
+
 
 .admin-section {
     background-color: var(--light-gray);
@@ -1189,6 +1198,11 @@ textarea {
     padding-bottom: 10px;
 }
 
+/* New: Group form elements for better layout */
+.admin-form-group {
+    margin-bottom: 15px; /* Adjust spacing here */
+}
+
 .admin-form label {
     display: block;
     margin-bottom: 8px;
@@ -1199,7 +1213,7 @@ textarea {
 .admin-input {
     width: 100%;
     padding: 10px 15px;
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; removed, handled by admin-form-group now */
     border: 1px solid var(--medium-gray);
     border-radius: 5px;
     font-family: 'Vazirmatn', sans-serif;
@@ -1231,7 +1245,7 @@ textarea {
 
 .admin-list-container {
     margin-top: 20px;
-    max-height: 300px;
+    max-height: 400px; /* Increased max-height to show more content without cutting off */
     overflow-y: auto;
     border: 1px solid var(--medium-gray);
     border-radius: var(--border-radius);
@@ -1251,10 +1265,18 @@ textarea {
     align-items: center;
     padding: 10px 0;
     border-bottom: 1px solid var(--light-gray);
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    gap: 10px; /* Space between item content and actions */
 }
 
 .admin-item-list li:last-child {
     border-bottom: none;
+}
+
+.admin-item-list .item-actions {
+    display: flex; /* Ensure action buttons are in a row */
+    gap: 5px; /* Space between buttons */
+    flex-shrink: 0; /* Prevent action buttons from shrinking */
 }
 
 .admin-item-list .item-actions button {
@@ -1264,7 +1286,7 @@ textarea {
     padding: 5px 10px;
     border-radius: 3px;
     cursor: pointer;
-    margin-right: 5px; /* Adjusted for RTL */
+    /* margin-right: 5px; Adjusted for RTL - Removed, using gap now */
     transition: background-color var(--transition-speed);
 }
 
@@ -1314,6 +1336,7 @@ textarea {
 .admin-item-list.gallery-admin-list li {
     flex-wrap: wrap;
     gap: 10px;
+    align-items: center; /* Vertically center image and text */
 }
 .admin-item-list.gallery-admin-list li img {
     width: 60px;
@@ -1321,12 +1344,14 @@ textarea {
     object-fit: cover;
     border-radius: 3px;
     margin-left: 10px; /* Spacing for thumbnail */
+    flex-shrink: 0; /* Prevent image from shrinking */
 }
 .admin-item-list.gallery-admin-list li span {
     flex-grow: 1;
     word-break: break-all;
     direction: ltr; /* Image URLs are often LTR */
     text-align: left;
+    min-width: 150px; /* Ensure a minimum width for the URL text */
 }
 
 
@@ -1425,6 +1450,37 @@ textarea {
     .admin-panel {
         max-width: 90%; /* Adjust for smaller screens */
     }
+
+    /* Admin list items become more flexible */
+    .admin-item-list li {
+        flex-direction: column; /* Stack name/date and actions */
+        align-items: flex-end; /* Align to right in RTL */
+        padding: 15px 10px;
+        text-align: right;
+    }
+    .admin-item-list li span {
+        width: 100%; /* Take full width */
+        margin-bottom: 10px; /* Space between text and buttons */
+        order: 1; /* Place text first */
+    }
+    .admin-item-list .item-actions {
+        width: 100%; /* Take full width */
+        justify-content: flex-end; /* Align buttons to the right */
+        order: 2; /* Place actions second */
+    }
+
+    .admin-item-list.gallery-admin-list li img {
+        margin-left: 0; /* No margin-left on stack */
+        margin-bottom: 10px;
+        order: 1; /* Image first */
+    }
+    .admin-item-list.gallery-admin-list li span {
+        order: 2; /* URL second */
+        text-align: right; /* Revert to RTL text align */
+    }
+    .admin-item-list.gallery-admin-list .item-actions {
+        order: 3; /* Actions last */
+    }
 }
 
 @media (max-width: 768px) {
@@ -1472,6 +1528,9 @@ textarea {
     #absentee-search, #absentee-sort {
         max-width: 100%;
         width: 100%;
+    }
+    .admin-panel {
+        padding: 20px; /* Reduce padding for smaller screens */
     }
 }
 
@@ -1529,5 +1588,8 @@ textarea {
     }
     .contact-info p {
         font-size: 0.9em;
+    }
+    .admin-panel {
+        padding: 15px; /* Further reduce padding */
     }
 }
