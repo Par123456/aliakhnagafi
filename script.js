@@ -10,44 +10,44 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize data from localStorage or use default samples
     const defaultNotificationMessage = "به سایت مدرسه شهید علی اکبر نجفی خوش آمدید! شروع سال تحصیلی جدید را تبریک می‌گوییم.";
     let notificationText = localStorage.getItem('notificationText') || defaultNotificationMessage;
-    let isNotificationVisible = localStorage.getItem('isNotificationVisible') !== 'false'; // Default to visible
+    let isNotificationVisible = localStorage.getItem('isNotificationVisible') !== 'false'; // Default to visible if not explicitly 'false'
 
-    // Use specific image IDs from picsum.photos for school-appropriate themes
     let newsData = JSON.parse(localStorage.getItem('newsData')) || [
-        { id: 1, title: 'افتتاح آزمایشگاه فیزیک جدید', date: '۱۴۰۲/۰۸/۰۱', image: 'https://picsum.photos/id/200/200/150', description: 'با حضور مسئولین و دانش‌آموزان، آزمایشگاه مجهز فیزیک مدرسه افتتاح شد.' },
-        { id: 2, title: 'برگزاری المپیاد ریاضی داخلی', date: '۱۴۰۲/۰۷/۲۵', image: 'https://picsum.photos/id/201/200/150', description: 'المپیاد ریاضی با هدف شناسایی استعدادهای برتر در مدرسه برگزار گردید.' },
-        { id: 3, title: 'کسب رتبه برتر در مسابقات رباتیک استانی', date: '۱۴۰۲/۰۷/۱۸', image: 'https://picsum.photos/id/202/200/150', description: 'تیم رباتیک مدرسه شهید نجفی، موفق به کسب مقام اول در مسابقات استانی شد.' },
-        { id: 4, title: 'کارگاه خلاقیت و نوآوری', date: '۱۴۰۲/۰۷/۱۰', image: 'https://picsum.photos/id/203/200/150', description: 'کارگاهی دو روزه با محوریت خلاقیت و ایده‌پردازی برای دانش‌آموزان برگزار شد.' },
-        { id: 5, title: 'آغاز ثبت نام کلاس‌های فوق برنامه', date: '۱۴۰۲/۰۷/۰۵', image: 'https://picsum.photos/id/204/200/150', description: 'ثبت نام برای کلاس‌های تقویتی و هنری آغاز شد. علاقه‌مندان می‌توانند اقدام کنند.' }
+        { id: 'news1', title: 'افتتاح آزمایشگاه فیزیک جدید', date: '۱۴۰۲/۰۸/۰۱', image: 'https://picsum.photos/id/200/400/250', description: 'با حضور مسئولین و دانش‌آموزان، آزمایشگاه مجهز فیزیک مدرسه افتتاح شد.' },
+        { id: 'news2', title: 'برگزاری المپیاد ریاضی داخلی', date: '۱۴۰۲/۰۷/۲۵', image: 'https://picsum.photos/id/201/400/250', description: 'المپیاد ریاضی با هدف شناسایی استعدادهای برتر در مدرسه برگزار گردید.' },
+        { id: 'news3', title: 'کسب رتبه برتر در مسابقات رباتیک استانی', date: '۱۴۰۲/۰۷/۱۸', image: 'https://picsum.photos/id/202/400/250', description: 'تیم رباتیک مدرسه شهید نجفی، موفق به کسب مقام اول در مسابقات استانی شد.' },
+        { id: 'news4', title: 'کارگاه خلاقیت و نوآوری', date: '۱۴۰۲/۰۷/۱۰', image: 'https://picsum.photos/id/203/400/250', description: 'کارگاهی دو روزه با محوریت خلاقیت و ایده‌پردازی برای دانش‌آموزان برگزار شد.' },
+        { id: 'news5', title: 'آغاز ثبت نام کلاس‌های فوق برنامه', date: '۱۴۰۲/۰۷/۰۵', image: 'https://picsum.photos/id/204/400/250', description: 'ثبت نام برای کلاس‌های تقویتی و هنری آغاز شد. علاقه‌مندان می‌توانند اقدام کنند.' }
     ];
 
     let eventsData = JSON.parse(localStorage.getItem('eventsData')) || [
-        { id: 1, title: 'جشنواره پروژه‌های علمی دانش‌آموزی', date: '2025-12-15T09:00:00', description: 'نمایش دستاوردهای علمی و پژوهشی دانش‌آموزان در سطح استان.' },
-        { id: 2, title: 'همایش اولیا و مربیان', date: '2025-11-20T16:00:00', description: 'گفتگو و تبادل نظر بین خانواده‌ها و کادر آموزشی مدرسه.' },
-        { id: 3, title: 'اردوی فرهنگی و تفریحی پاییزه', date: '2025-11-05T08:30:00', description: 'بازدید از اماکن تاریخی و تفریحی کرمانشاه با دانش‌آموزان.' }
+        { id: 'event1', title: 'جشنواره پروژه‌های علمی دانش‌آموزی', date: '2025-12-15T09:00:00', description: 'نمایش دستاوردهای علمی و پژوهشی دانش‌آموزان در سطح استان.' },
+        { id: 'event2', title: 'همایش اولیا و مربیان', date: '2025-11-20T16:00:00', description: 'گفتگو و تبادل نظر بین خانواده‌ها و کادر آموزشی مدرسه.' },
+        { id: 'event3', title: 'اردوی فرهنگی و تفریحی پاییزه', date: '2025-11-05T08:30:00', description: 'بازدید از اماکن تاریخی و تفریحی کرمانشاه با دانش‌آموزان.' }
     ];
 
     let absenteesData = JSON.parse(localStorage.getItem('absenteesData')) || [
-        { id: 1, name: 'سارا احمدی', class: 'دهم تجربی', date: '۱۴۰۲/۰۸/۰۱' },
-        { id: 2, name: 'امیر محمدی', class: 'یازدهم ریاضی', date: '۱۴۰۲/۰۷/۳۰' },
-        { id: 3, name: 'زهرا رضایی', class: 'نهم', date: '۱۴۰۲/۰۷/۲۹' },
-        { id: 4, name: 'علی حسینی', class: 'دهم انسانی', date: '۱۴۰۲/۰۷/۲۹' }
+        { id: 'absentee1', name: 'سارا احمدی', class: 'دهم تجربی', date: '۱۴۰۲/۰۸/۰۱' },
+        { id: 'absentee2', name: 'امیر محمدی', class: 'یازدهم ریاضی', date: '۱۴۰۲/۰۷/۳۰' },
+        { id: 'absentee3', name: 'زهرا رضایی', class: 'نهم', date: '۱۴۰۲/۰۷/۲۹' },
+        { id: 'absentee4', name: 'علی حسینی', class: 'دهم انسانی', date: '۱۴۰۲/۰۷/۲۹' }
     ];
 
-    const staffData = [
-        { id: 1, name: 'دکتر فاطمه اکبری', position: 'مدیر مدرسه', image: 'https://picsum.photos/id/64/200', education: 'دکترای مدیریت آموزشی', contact: 'akbari.m@najafischool.ir' },
-        { id: 2, name: 'مهندس حسین رضایی', position: 'معاون آموزشی', image: 'https://picsum.photos/id/83/200', education: 'کارشناسی ارشد مهندسی', contact: 'rezaei.h@najafischool.ir' },
-        { id: 3, name: 'خانم مریم نوری', position: 'معلم ریاضی', image: 'https://picsum.photos/id/82/200', education: 'کارشناسی ریاضیات', contact: 'nouri.m@najafischool.ir' },
-        { id: 4, name: 'آقای سعید کریمی', position: 'معلم علوم', image: 'https://picsum.photos/id/81/200', education: 'کارشناسی ارشد فیزیک', contact: 'karimi.s@najafischool.ir' }
+    let staffData = JSON.parse(localStorage.getItem('staffData')) || [
+        { id: 'staff1', name: 'دکتر فاطمه اکبری', position: 'مدیر مدرسه', image: 'https://picsum.photos/id/64/200/200', education: 'دکترای مدیریت آموزشی', contact: 'akbari.f@najafischool.ir' },
+        { id: 'staff2', name: 'مهندس حسین رضایی', position: 'معاون آموزشی', image: 'https://picsum.photos/id/83/200/200', education: 'کارشناسی ارشد مهندسی', contact: 'rezaei.h@najafischool.ir' },
+        { id: 'staff3', name: 'خانم مریم نوری', position: 'معلم ریاضی', image: 'https://picsum.photos/id/82/200/200', education: 'کارشناسی ریاضیات', contact: 'nouri.m@najafischool.ir' },
+        { id: 'staff4', name: 'آقای سعید کریمی', position: 'معلم علوم', image: 'https://picsum.photos/id/81/200/200', education: 'کارشناسی ارشد فیزیک', contact: 'karimi.s@najafischool.ir' }
     ];
 
-    const galleryImages = [
+    let galleryImages = JSON.parse(localStorage.getItem('galleryImages')) || [
         'https://picsum.photos/id/219/800/600',  // School playground/activity
         'https://picsum.photos/id/212/800/600',  // Classroom interior
         'https://picsum.photos/id/237/800/600',  // Students walking in hallway
         'https://picsum.photos/id/238/800/600',  // Library/study area
         'https://picsum.photos/id/257/800/600'   // Science lab equipment
     ];
+
 
     // --- Header & Navigation Logic ---
     // Toggle mobile menu
@@ -80,6 +80,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Notification Bar Logic
     if (notificationBar) {
+        // Ensure the close button is present even if content is updated
+        if (!notificationBar.querySelector('.close-btn')) {
+             const pTag = notificationBar.querySelector('p');
+             if (pTag) pTag.innerHTML += ' <span class="close-btn" aria-label="بستن">&times;</span>';
+        }
+
         if (isNotificationVisible && notificationText) {
             notificationBar.querySelector('p').innerHTML = `${notificationText} <span class="close-btn" aria-label="بستن">&times;</span>`;
             notificationBar.classList.remove('hidden');
@@ -116,8 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (heroContent) {
             heroContent.querySelectorAll('.animated-text, .btn').forEach(el => {
                 // Remove existing animation classes
-                el.classList.remove('animated-text');
-                el.classList.remove('fadeIn');
+                el.classList.remove('animated-text', 'fadeIn');
                 // Trigger reflow to restart animation
                 void el.offsetWidth;
                 // Add classes back
@@ -212,6 +217,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const countdownSeconds = document.getElementById('seconds');
     const countdownMessage = document.getElementById('countdown-message');
     const countdownTimerElement = document.getElementById('countdown-timer');
+    const countdownCardH3 = document.querySelector('.countdown-card h3');
+
 
     function formatPersianDate(isoDateString, includeTime = false) {
         // Use native Intl.DateTimeFormat for best effort Persian date formatting
@@ -220,7 +227,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (includeTime) {
             options = { ...options, hour: '2-digit', minute: '2-digit', hour12: false };
         }
-        return date.toLocaleDateString('fa-IR', options);
+        try {
+            return date.toLocaleDateString('fa-IR', options);
+        } catch (e) {
+            console.warn("Could not format date to fa-IR, falling back to default:", e);
+            return date.toLocaleString('en-US', options); // Fallback
+        }
     }
 
     function renderEvents(eventsArray) {
@@ -243,6 +255,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const eventDate = new Date(event.date);
             const day = eventDate.toLocaleDateString('fa-IR', { day: 'numeric' });
             const month = eventDate.toLocaleDateString('fa-IR', { month: 'short' });
+            const time = eventDate.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', hour12: false });
+
             const eventItem = document.createElement('div');
             eventItem.classList.add('event-item');
             eventItem.innerHTML = `
@@ -252,7 +266,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="event-content">
                     <h3>${event.title}</h3>
-                    <p>${event.description} <br> <span>(زمان: ${eventDate.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit', hour12: false })})</span></p>
+                    <p>${event.description} <br> <span>(زمان: ${time})</span></p>
                 </div>
             `;
             eventsListContainer.appendChild(eventItem);
@@ -264,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Countdown Timer
     function updateCountdown() {
-        if (!countdownDays || !countdownTimerElement) return;
+        if (!countdownTimerElement) return;
 
         const now = new Date().getTime();
         const upcomingEvents = eventsData.filter(event => new Date(event.date).getTime() > now);
@@ -274,7 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!nextEvent) {
             countdownTimerElement.innerHTML = '<p class="no-results">رویداد مهم بعدی در آینده نزدیک نیست.</p>';
-            if (countdownMessage) countdownMessage.textContent = '';
+            if (countdownCardH3) countdownCardH3.textContent = 'رویداد مهم بعدی:';
+            if (countdownMessage) countdownMessage.textContent = 'زمان باقی‌مانده تا آغاز رویداد بزرگ سال.';
             return;
         }
 
@@ -283,6 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (distance < 0) {
             countdownTimerElement.innerHTML = '<p class="no-results">رویداد آغاز شده یا به پایان رسیده است!</p>';
+            if (countdownCardH3) countdownCardH3.textContent = 'رویداد مهم بعدی:';
             if (countdownMessage) countdownMessage.textContent = '';
             return;
         }
@@ -297,7 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (countdownMinutes) countdownMinutes.textContent = String(minutes).padStart(2, '0');
         if (countdownSeconds) countdownSeconds.textContent = String(seconds).padStart(2, '0');
         
-        const countdownCardH3 = document.querySelector('.countdown-card h3');
         if (countdownCardH3) countdownCardH3.textContent = `رویداد مهم بعدی: ${nextEvent.title}`;
         if (countdownMessage) countdownMessage.textContent = `زمان باقی‌مانده تا آغاز: ${nextEvent.title}.`;
     }
@@ -351,13 +366,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const sortBy = absenteeSortSelect ? absenteeSortSelect.value : 'name';
         currentAbsentees.sort((a, b) => {
             if (sortBy === 'date') {
-                // Assuming date is in 'YYYY/MM/DD' format for comparison
-                // Convert Persian date to Gregorian for proper comparison if needed
-                // For simplicity, directly comparing string works if format is consistent
-                // For real applications, use a robust Persian date converter
-                const dateA = convertPersianToGregorianString(a.date);
-                const dateB = convertPersianToGregorianString(b.date);
-                return new Date(dateB) - new Date(dateA); // Newest first
+                // IMPORTANT: This is a simplistic string comparison for Persian dates (YYYY/MM/DD).
+                // For a robust, accurate chronological sort across different Jalaali years/months,
+                // a full Jalaali calendar library would be required to convert to Gregorian for Date objects.
+                // For this client-side demo, direct string comparison assuming consistent YYYY/MM/DD works for 'newest first'.
+                return b.date.localeCompare(a.date, 'fa'); // Assumes 'newer' date string is 'larger'
             } else {
                 return a[sortBy].localeCompare(b[sortBy], 'fa', { sensitivity: 'base' });
             }
@@ -365,20 +378,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderAbsentees(currentAbsentees);
     }
-
-    // Helper to convert Persian date string "YYYY/MM/DD" to "YYYY-MM-DD" for Date object
-    // NOTE: This is a simplistic direct replacement. For accurate conversion across centuries,
-    // a full Jalaali library is required. For this "vanilla JS" context, we assume
-    // that sorting these strings is sufficient for the user's perception of "newest first"
-    // without full calendar conversion, as direct JS Date parsing of Jalaali year is incorrect.
-    function convertPersianToGregorianString(persianDate) {
-        const parts = persianDate.split('/');
-        if (parts.length === 3) {
-            return `${parts[0].padStart(4, '0')}-${parts[1].padStart(2, '0')}-${parts[2].padStart(2, '0')}`;
-        }
-        return persianDate; // Return as is if format is unexpected
-    }
-
 
     if (absenteeSearchInput) {
         absenteeSearchInput.addEventListener('input', updateAbsenteesDisplay);
@@ -393,6 +392,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderStaff(staffArray) {
         if (!staffContainer) return;
         staffContainer.innerHTML = '';
+        if (staffArray.length === 0) {
+            staffContainer.innerHTML = '<p class="no-results">کارکنانی یافت نشد.</p>';
+            return;
+        }
         staffArray.forEach(staff => {
             const staffCard = document.createElement('div');
             staffCard.classList.add('staff-card');
@@ -401,8 +404,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h3>${staff.name}</h3>
                 <span class="position">${staff.position}</span>
                 <div class="staff-details">
-                    <p><strong>تحصیلات:</strong> ${staff.education}</p>
-                    <p><strong>تماس:</strong> <a href="mailto:${staff.contact}">${staff.contact}</a></p>
+                    ${staff.education ? `<p><strong>تحصیلات:</strong> ${staff.education}</p>` : ''}
+                    ${staff.contact ? `<p><strong>تماس:</strong> <a href="mailto:${staff.contact}">${staff.contact}</a></p>` : ''}
                 </div>
             `;
             staffContainer.appendChild(staffCard);
@@ -424,6 +427,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderGallery(imagesArray) {
         if (!galleryGrid) return;
         galleryGrid.innerHTML = '';
+        if (imagesArray.length === 0) {
+            galleryGrid.innerHTML = '<p class="no-results">هیچ تصویری در گالری یافت نشد.</p>';
+            return;
+        }
         imagesArray.forEach((imageSrc, index) => {
             const galleryItem = document.createElement('div');
             galleryItem.classList.add('gallery-item');
@@ -468,17 +475,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Lightbox Navigation
-    if (lightboxPrev) {
+    // Lightbox Navigation (Adjusted for RTL convention: prev button shows next image logically)
+    if (lightboxPrev) { // This is the 'right' arrow in LTR, but 'prev' button visually
         lightboxPrev.addEventListener('click', (e) => {
             e.stopPropagation(); // Prevent closing lightbox if click outside image
-            showLightboxImage(currentImageIndex + 1); // Next for RTL navigation convention
+            showLightboxImage(currentImageIndex + 1); // For RTL, clicking 'prev' (right arrow) usually means moving to the next item
         });
     }
-    if (lightboxNext) {
+    if (lightboxNext) { // This is the 'left' arrow in LTR, but 'next' button visually
         lightboxNext.addEventListener('click', (e) => {
             e.stopPropagation(); // Prevent closing lightbox
-            showLightboxImage(currentImageIndex - 1); // Previous for RTL navigation convention
+            showLightboxImage(currentImageIndex - 1); // For RTL, clicking 'next' (left arrow) usually means moving to the previous item
         });
     }
     // Close lightbox on outside click (excluding nav buttons)
@@ -494,10 +501,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lightbox && lightbox.classList.contains('active')) {
             if (e.key === 'Escape') {
                 lightbox.classList.remove('active');
-            } else if (e.key === 'ArrowLeft') { // For RTL, ArrowLeft would be next image
-                showLightboxImage(currentImageIndex + 1);
-            } else if (e.key === 'ArrowRight') { // For RTL, ArrowRight would be previous image
-                showLightboxImage(currentImageIndex - 1);
+            } else if (e.key === 'ArrowLeft') { // For RTL, ArrowLeft (visual left) is often treated as "next"
+                showLightboxImage(currentImageIndex - 1); // Previous image logically in LTR, but visually 'next' in RTL gallery
+            } else if (e.key === 'ArrowRight') { // For RTL, ArrowRight (visual right) is often treated as "previous"
+                showLightboxImage(currentImageIndex + 1); // Next image logically in LTR, but visually 'prev' in RTL gallery
             }
         }
     });
@@ -592,6 +599,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const adminEventDescription = document.getElementById('admin-event-description');
     const adminEventsList = document.getElementById('admin-events-list');
 
+    const adminAbsenteeForm = document.getElementById('admin-absentee-form');
+    const adminAbsenteeId = document.getElementById('admin-absentee-id');
+    const adminAbsenteeName = document.getElementById('admin-absentee-name');
+    const adminAbsenteeClass = document.getElementById('admin-absentee-class');
+    const adminAbsenteeDate = document.getElementById('admin-absentee-date');
+    const adminAbsenteeList = document.getElementById('admin-absentee-list');
+
+    const adminStaffForm = document.getElementById('admin-staff-form');
+    const adminStaffId = document.getElementById('admin-staff-id');
+    const adminStaffName = document.getElementById('admin-staff-name');
+    const adminStaffPosition = document.getElementById('admin-staff-position');
+    const adminStaffImage = document.getElementById('admin-staff-image');
+    const adminStaffEducation = document.getElementById('admin-staff-education');
+    const adminStaffContact = document.getElementById('admin-staff-contact');
+    const adminStaffList = document.getElementById('admin-staff-list');
+
+    const adminGalleryForm = document.getElementById('admin-gallery-form');
+    const adminGalleryId = document.getElementById('admin-gallery-id'); // Not strictly needed for gallery as we only add/delete by URL
+    const adminGalleryImageUrl = document.getElementById('admin-gallery-image-url');
+    const adminGalleryList = document.getElementById('admin-gallery-list');
+
+
     const ADMIN_PASSWORD = 'admin123'; // Hardcoded admin password - INSECURE for real apps!
 
     // --- Utility functions for localStorage ---
@@ -600,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(key, JSON.stringify(data));
         } catch (e) {
             console.error('Error saving to localStorage:', e);
-            alert('خطا در ذخیره اطلاعات. فضای ذخیره‌سازی محلی ممکن است پر باشد.');
+            alert('خطا در ذخیره اطلاعات. فضای ذخیره‌سازی محلی ممکن است پر باشد. (Failing to save ' + key + ')');
         }
     }
 
@@ -618,6 +647,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         renderAdminNewsList();
         renderAdminEventsList();
+        renderAdminAbsenteesList();
+        renderAdminStaffList();
+        renderAdminGalleryList();
     }
 
     // --- Notification Bar Admin ---
@@ -645,7 +677,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderAdminNewsList() {
         if (!adminNewsList) return;
         adminNewsList.innerHTML = '';
-        newsData.forEach(news => {
+        // Sort news by date, newest first for admin panel display
+        const sortedNews = [...newsData].sort((a, b) => b.date.localeCompare(a.date, 'fa'));
+
+        sortedNews.forEach(news => {
             const li = document.createElement('li');
             li.innerHTML = `
                 <span>${news.title} (${news.date})</span>
@@ -682,7 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 // Add new news
                 const newNews = { id: generateUniqueId(), title, date, image, description };
-                newsData.unshift(newNews); // Add to the beginning
+                newsData.unshift(newNews); // Add to the beginning to show newest first
             }
             saveToLocalStorage('newsData', newsData);
             renderAdminNewsList();
@@ -720,9 +755,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderAdminEventsList() {
         if (!adminEventsList) return;
         adminEventsList.innerHTML = '';
-        eventsData.forEach(event => {
+        // Sort events by date, newest first for admin panel display
+        const sortedEvents = [...eventsData].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        sortedEvents.forEach(event => {
             const li = document.createElement('li');
-            const eventDateTime = new Date(event.date);
             const formattedDate = formatPersianDate(event.date, true); // Use formatPersianDate helper
             li.innerHTML = `
                 <span>${event.title} (${formattedDate})</span>
@@ -759,7 +796,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 // Add new event
                 const newEvent = { id: generateUniqueId(), title, date, description };
-                eventsData.unshift(newEvent); // Add to the beginning
+                eventsData.unshift(newEvent); // Add to the beginning to show newest first
             }
             saveToLocalStorage('eventsData', eventsData);
             renderAdminEventsList();
@@ -794,6 +831,222 @@ document.addEventListener('DOMContentLoaded', () => {
                     saveToLocalStorage('eventsData', eventsData);
                     renderAdminEventsList();
                     alert('رویداد حذف شد.');
+                }
+            }
+        });
+    }
+
+    // --- Absentees Admin ---
+    function renderAdminAbsenteesList() {
+        if (!adminAbsenteeList) return;
+        adminAbsenteeList.innerHTML = '';
+        // Sort absentees by date, newest first for admin panel display
+        const sortedAbsentees = [...absenteesData].sort((a, b) => b.date.localeCompare(a.date, 'fa'));
+
+        sortedAbsentees.forEach(absentee => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <span>${absentee.name} (${absentee.class}) - ${absentee.date}</span>
+                <div class="item-actions">
+                    <button data-id="${absentee.id}" class="edit-btn">ویرایش</button>
+                    <button data-id="${absentee.id}" class="delete-btn">حذف</button>
+                </div>
+            `;
+            adminAbsenteeList.appendChild(li);
+        });
+        updateAbsenteesDisplay(); // Re-render public absentees section (which includes search/sort)
+    }
+
+    if (adminAbsenteeForm) {
+        adminAbsenteeForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = adminAbsenteeId ? adminAbsenteeId.value : '';
+            const name = adminAbsenteeName ? adminAbsenteeName.value.trim() : '';
+            const className = adminAbsenteeClass ? adminAbsenteeClass.value.trim() : '';
+            const date = adminAbsenteeDate ? adminAbsenteeDate.value.trim() : '';
+
+            if (!name || !className || !date) {
+                alert('لطفاً تمامی فیلدهای غایب را پر کنید.');
+                return;
+            }
+
+            if (id) {
+                // Update existing absentee
+                const index = absenteesData.findIndex(a => String(a.id) === id);
+                if (index !== -1) {
+                    absenteesData[index] = { ...absenteesData[index], name, class: className, date };
+                }
+            } else {
+                // Add new absentee
+                const newAbsentee = { id: generateUniqueId(), name, class: className, date };
+                absenteesData.unshift(newAbsentee); // Add to the beginning to show newest first
+            }
+            saveToLocalStorage('absenteesData', absenteesData);
+            renderAdminAbsenteesList();
+            adminAbsenteeForm.reset();
+            if (adminAbsenteeId) adminAbsenteeId.value = ''; // Clear ID for next add
+            alert('اطلاعات غایب ذخیره شد.');
+        });
+    }
+
+    if (adminAbsenteeList) {
+        adminAbsenteeList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('edit-btn')) {
+                const id = e.target.dataset.id;
+                const absentee = absenteesData.find(a => String(a.id) === id);
+                if (absentee && adminAbsenteeId && adminAbsenteeName && adminAbsenteeClass && adminAbsenteeDate) {
+                    adminAbsenteeId.value = absentee.id;
+                    adminAbsenteeName.value = absentee.name;
+                    adminAbsenteeClass.value = absentee.class;
+                    adminAbsenteeDate.value = absentee.date;
+                }
+            } else if (e.target.classList.contains('delete-btn')) {
+                const id = e.target.dataset.id;
+                if (confirm('آیا از حذف این غایب اطمینان دارید؟')) {
+                    absenteesData = absenteesData.filter(a => String(a.id) !== id);
+                    saveToLocalStorage('absenteesData', absenteesData);
+                    renderAdminAbsenteesList();
+                    alert('غایب حذف شد.');
+                }
+            }
+        });
+    }
+
+    // --- Staff Admin ---
+    function renderAdminStaffList() {
+        if (!adminStaffList) return;
+        adminStaffList.innerHTML = '';
+        // Sort staff alphabetically by name for admin panel display
+        const sortedStaff = [...staffData].sort((a, b) => a.name.localeCompare(b.name, 'fa', { sensitivity: 'base' }));
+
+        sortedStaff.forEach(staff => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <span>${staff.name} (${staff.position})</span>
+                <div class="item-actions">
+                    <button data-id="${staff.id}" class="edit-btn">ویرایش</button>
+                    <button data-id="${staff.id}" class="delete-btn">حذف</button>
+                </div>
+            `;
+            adminStaffList.appendChild(li);
+        });
+        renderStaff(staffData); // Re-render public staff section
+    }
+
+    if (adminStaffForm) {
+        adminStaffForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const id = adminStaffId ? adminStaffId.value : '';
+            const name = adminStaffName ? adminStaffName.value.trim() : '';
+            const position = adminStaffPosition ? adminStaffPosition.value.trim() : '';
+            const image = adminStaffImage ? adminStaffImage.value.trim() : '';
+            const education = adminStaffEducation ? adminStaffEducation.value.trim() : '';
+            const contact = adminStaffContact ? adminStaffContact.value.trim() : '';
+
+            if (!name || !position || !image) {
+                alert('لطفاً فیلدهای نام، سمت و لینک تصویر کارکنان را پر کنید.');
+                return;
+            }
+
+            if (id) {
+                // Update existing staff
+                const index = staffData.findIndex(s => String(s.id) === id);
+                if (index !== -1) {
+                    staffData[index] = { ...staffData[index], name, position, image, education, contact };
+                }
+            } else {
+                // Add new staff
+                const newStaff = { id: generateUniqueId(), name, position, image, education, contact };
+                staffData.push(newStaff); // Add to end, then sort for display
+            }
+            saveToLocalStorage('staffData', staffData);
+            renderAdminStaffList();
+            adminStaffForm.reset();
+            if (adminStaffId) adminStaffId.value = ''; // Clear ID for next add
+            alert('اطلاعات کارکنان ذخیره شد.');
+        });
+    }
+
+    if (adminStaffList) {
+        adminStaffList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('edit-btn')) {
+                const id = e.target.dataset.id;
+                const staff = staffData.find(s => String(s.id) === id);
+                if (staff && adminStaffId && adminStaffName && adminStaffPosition && adminStaffImage && adminStaffEducation && adminStaffContact) {
+                    adminStaffId.value = staff.id;
+                    adminStaffName.value = staff.name;
+                    adminStaffPosition.value = staff.position;
+                    adminStaffImage.value = staff.image;
+                    adminStaffEducation.value = staff.education || '';
+                    adminStaffContact.value = staff.contact || '';
+                }
+            } else if (e.target.classList.contains('delete-btn')) {
+                const id = e.target.dataset.id;
+                if (confirm('آیا از حذف این کارمند اطمینان دارید؟')) {
+                    staffData = staffData.filter(s => String(s.id) !== id);
+                    saveToLocalStorage('staffData', staffData);
+                    renderAdminStaffList();
+                    alert('کارمند حذف شد.');
+                }
+            }
+        });
+    }
+
+    // --- Gallery Admin ---
+    function renderAdminGalleryList() {
+        if (!adminGalleryList) return;
+        adminGalleryList.innerHTML = '';
+        if (galleryImages.length === 0) {
+            adminGalleryList.innerHTML = '<li>هیچ تصویری در گالری ثبت نشده است.</li>';
+            return;
+        }
+
+        galleryImages.forEach((imageSrc, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <img src="${imageSrc}" alt="تصویر گالری" style="width: 60px; height: 40px; object-fit: cover; border-radius: 3px;">
+                <span>${imageSrc}</span>
+                <div class="item-actions">
+                    <button data-index="${index}" class="delete-btn">حذف</button>
+                </div>
+            `;
+            adminGalleryList.appendChild(li);
+        });
+        renderGallery(galleryImages); // Re-render public gallery section
+    }
+
+    if (adminGalleryForm) {
+        adminGalleryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const imageUrl = adminGalleryImageUrl ? adminGalleryImageUrl.value.trim() : '';
+
+            if (!imageUrl) {
+                alert('لطفاً لینک تصویر را وارد کنید.');
+                return;
+            }
+
+            // Simple check for duplicate, though direct equality might be too strict for URLs
+            if (!galleryImages.includes(imageUrl)) {
+                galleryImages.push(imageUrl); // Add new image URL
+                saveToLocalStorage('galleryImages', galleryImages);
+                renderAdminGalleryList();
+                adminGalleryForm.reset();
+                alert('تصویر به گالری اضافه شد.');
+            } else {
+                alert('این تصویر از قبل در گالری موجود است.');
+            }
+        });
+    }
+
+    if (adminGalleryList) {
+        adminGalleryList.addEventListener('click', (e) => {
+            if (e.target.classList.contains('delete-btn')) {
+                const indexToDelete = parseInt(e.target.dataset.index);
+                if (confirm('آیا از حذف این تصویر اطمینان دارید؟')) {
+                    galleryImages.splice(indexToDelete, 1); // Remove image by index
+                    saveToLocalStorage('galleryImages', galleryImages);
+                    renderAdminGalleryList();
+                    alert('تصویر حذف شد.');
                 }
             }
         });
