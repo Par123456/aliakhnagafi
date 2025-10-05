@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدرسه شهید علی اکبر نجفی - کرمانشاه</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Vazirmatn font import from Google Fonts for optimal Persian typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Notification Bar - Can be updated via Admin Panel -->
+    <div id="notification-bar" class="notification-bar">
+        <p>به سایت مدرسه شهید علی اکبر نجفی خوش آمدید! شروع سال تحصیلی جدید را تبریک می‌گوییم. <span class="close-btn" aria-label="بستن">&times;</span></p>
+    </div>
+
+    <!-- Main Header & Navigation -->
+    <header id="main-header">
+        <div class="header-content container">
+            <div class="brand">
+                <a href="#hero" class="logo">
+                    <!-- School Logo - Generic SVG for 3-file constraint -->
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="لوگوی مدرسه">
+                        <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" fill="#1976D2"/>
+                        <path d="M12 6L18 9.5V14.5L12 18L6 14.5V9.5L12 6Z" fill="#0D47A1"/>
+                        <path d="M12 9.5L12 14.5M12 9.5L15 11.25M12 9.5L9 11.25M12 14.5L15 12.75M12 14.5L9 12.75" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <div class="school-info">
+                    <h1>مدرسه شهید علی اکبر نجفی</h1>
+                    <p>پایه گذار آینده، پرورش دهنده اندیشه</p>
+                </div>
+            </div>
+            <nav id="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#hero">خانه</a></li>
+                    <li><a href="#news">اخبار</a></li>
+                    <li><a href="#events">رویدادها</a></li>
+                    <li><a href="#absentees">غایبین</a></li>
+                    <li><a href="#staff">کارکنان</a></li>
+                    <li><a href="#gallery">گالری</a></li>
+                    <li><a href="#about">درباره ما</a></li>
+                    <li><a href="#contact">تماس با ما</a></li>
+                </ul>
+                <div class="hamburger-menu" aria-label="منوی ناوبری موبایل">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Landing Section (Hero Slider) -->
+        <section id="hero" class="hero-section">
+            <div class="slider-container">
+                <div class="slider-item active" style="background-image: url('https://picsum.photos/id/1074/1600/900');">
+                    <div class="overlay"></div>
+                </div>
+                <div class="slider-item" style="background-image: url('https://picsum.photos/id/1076/1600/900');">
+                    <div class="overlay"></div>
+                </div>
+                <div class="slider-item" style="background-image: url('https://picsum.photos/id/1072/1600/900');">
+                    <div class="overlay"></div>
+                </div>
+                <button class="slider-nav prev" aria-label="اسلاید قبلی">&#10094;</button>
+                <button class="slider-nav next" aria-label="اسلاید بعدی">&#10095;</button>
+            </div>
+            <div class="hero-content container">
+                <h2 class="animated-text">به دبیرستان شهید علی اکبر نجفی کرمانشاه خوش آمدید!</h2>
+                <p class="animated-text">محیطی برای رشد، شکوفایی و تعالی نسل‌های آینده.</p>
+                <a href="#about" class="btn btn-primary">بیشتر بدانید</a>
+            </div>
+        </section>
+
+        <!-- News and Announcements Section -->
+        <section id="news" class="section-padding section-light-bg">
+            <div class="container">
+                <h2 class="section-title">اخبار و اطلاعیه‌ها</h2>
+                <div class="news-controls">
+                    <input type="text" id="news-search" placeholder="جستجو در اخبار..." aria-label="جستجو در اخبار">
+                </div>
+                <div class="news-grid" id="news-container">
+                    <!-- News cards will be dynamically loaded by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Events and Calendar Section -->
+        <section id="events" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">رویدادها و تقویم</h2>
+                <div class="events-grid">
+                    <div class="events-list" id="events-list-container">
+                        <!-- Events will be dynamically loaded by JavaScript -->
+                    </div>
+                    <div class="countdown-card">
+                        <h3>رویداد مهم بعدی:</h3>
+                        <div class="countdown-timer" id="countdown-timer">
+                            <div class="timer-segment">
+                                <span id="days">00</span>
+                                <span>روز</span>
+                            </div>
+                            <div class="timer-segment">
+                                <span id="hours">00</span>
+                                <span>ساعت</span>
+                            </div>
+                            <div class="timer-segment">
+                                <span id="minutes">00</span>
+                                <span>دقیقه</span>
+                            </div>
+                            <div class="timer-segment">
+                                <span id="seconds">00</span>
+                                <span>ثانیه</span>
+                            </div>
+                        </div>
+                        <p class="countdown-message" id="countdown-message">زمان باقی‌مانده تا آغاز رویداد بزرگ سال.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Absentees Section -->
+        <section id="absentees" class="section-padding section-light-bg">
+            <div class="container">
+                <h2 class="section-title">لیست غایبین</h2>
+                <div class="absentee-controls">
+                    <input type="text" id="absentee-search" placeholder="جستجو بر اساس نام یا کلاس..." aria-label="جستجو در غایبین">
+                    <select id="absentee-sort" aria-label="مرتب‌سازی غایبین">
+                        <option value="name">مرتب‌سازی بر اساس نام</option>
+                        <option value="class">مرتب‌سازی بر اساس کلاس</option>
+                        <option value="date">مرتب‌سازی بر اساس تاریخ (جدیدترین)</option>
+                    </select>
+                </div>
+                <div class="absentee-list-container">
+                    <table class="absentee-table">
+                        <thead>
+                            <tr>
+                                <th>نام</th>
+                                <th>کلاس</th>
+                                <th>تاریخ غیبت</th>
+                            </tr>
+                        </thead>
+                        <tbody id="absentee-table-body">
+                            <!-- Absentees rows will be dynamically loaded by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Staff Directory Section -->
+        <section id="staff" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">دایرکتوری کارکنان</h2>
+                <div class="staff-grid" id="staff-container">
+                    <!-- Staff cards will be dynamically loaded by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Gallery Section -->
+        <section id="gallery" class="section-padding section-light-bg">
+            <div class="container">
+                <h2 class="section-title">گالری تصاویر</h2>
+                <div class="gallery-grid" id="gallery-grid">
+                    <!-- Gallery images will be dynamically loaded by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Lightbox for image viewing -->
+            <div id="lightbox" class="lightbox">
+                <span class="lightbox-close" aria-label="بستن گالری">&times;</span>
+                <img src="" alt="تصویر بزرگ شده" id="lightbox-img">
+                <button class="lightbox-nav lightbox-prev" aria-label="تصویر قبلی">&#10094;</button>
+                <button class="lightbox-nav lightbox-next" aria-label="تصویر بعدی">&#10095;</button>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="section-padding about-section">
+            <div class="about-bg-image" style="background-image: url('https://picsum.photos/id/111/1600/900');"></div>
+            <div class="container about-content">
+                <h2 class="section-title white-text">درباره دبیرستان شهید علی اکبر نجفی</h2>
+                <p>دبیرستان شهید علی اکبر نجفی، واقع در شهرک تیمسار نجفی کرمانشاه، از سال ۱۳۷۷ با همت و تلاش وزارت آموزش و پرورش وارد چرخه آموزشی کشور شده است. این مرکز آموزشی دولتی، با ارائه خدمات آموزشی و پرورشی متنوع، به تربیت دانش‌آموزان دوره دوم متوسطه نظری در رشته‌های تجربی و انسانی می‌پردازد. ما متعهد به ایجاد محیطی پویا برای رشد علمی، فکری و اجتماعی فرزندان این مرز و بوم هستیم.</p>
+                <p>مدرسه با مساحت بنای آموزشی ۴۸۴ متر مربع و حیاطی به مساحت ۴۸۷ متر مربع، فضایی مناسب برای تحصیل و فعالیت‌های ورزشی فراهم آورده است. امکانات رفاهی و آموزشی ما شامل کتابخانه با بیش از ۲۸۰ جلد کتاب، بوفه، نمازخانه، و حیاط ورزشی مناسب است. همچنین، ما بر برنامه‌ریزی تحصیلی دقیق، ارائه طرح درس توسط دبیران، برگزاری آزمون‌های مستمر هفتگی و ماهانه، و کنترل دقیق ورود و خروج دانش‌آموزان تاکید داریم.</p>
+                <p>چشم‌انداز ما پرورش دانش‌آموزانی با بینش عمیق، مهارت‌های کاربردی و تعهد اخلاقی است که بتوانند در آینده به شهروندانی مسئولیت‌پذیر و مؤثر تبدیل شوند. آزمایشگاه‌های مجهز فیزیک، شیمی، و زیست‌شناسی، کارگاه کامپیوتر، کارگاه هنرهای تجسمی، سالن مطالعه و واحد مشاوره از دیگر امکانات ما برای تحقق این هدف هستند.</p>
+                <a href="#contact" class="btn btn-secondary">با ما تماس بگیرید</a>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section id="contact" class="section-padding">
+            <div class="container">
+                <h2 class="section-title">تماس با ما</h2>
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>راه‌های ارتباطی</h3>
+                        <p><i class="icon-location"></i> آدرس: کرمانشاه، شهرک تیمسار نجفی، بلوار زن، خیابان قائم</p>
+                        <p><i class="icon-phone"></i> تلفن: <a href="tel:+988338383527">۰۸۳-۳۸۳۸۳۵۲۷</a></p>
+                        <p><i class="icon-email"></i> ایمیل: <a href="mailto:info@najafischool.ir">info@najafischool.ir</a></p>
+                        <div class="social-links">
+                            <!-- Base64 encoded SVGs for social icons to keep within 3 files -->
+                            <a href="#" aria-label="اینستاگرام"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNjQgMzUydjgwYzAgMTcuNyAxNC4zIDMyIDMyIDMyaDgwVjM1Mkg2NHptMzIwIDBoLTgwVjQ2NGg4MGMxNy43IDAgMzItMTQuMyAzMi0zMlYzNTJ6TTAgOTZjMC01MyAzMi02NC02NC02NGg0NDhjMzUuMyAwIDY0IDI4LjcgNjQgNjRWNDA1LjdjLTEuOCAxNy45LTQuMyAzNS42LTE3LjMgNDguNy0xMyAxMy0yOS41IDE4LjItNDcuNSAxOC42LTEuNS4xLTMgLjEtNC41LjFIMTA4LjdjLTQuMiAwLTguNC0uMy0xMi42LS42QzY0LjggNDYwLjMgMjggNDI3LjQgMjggMzk3LjVWMTU3LjljMCAzMiA2NCA2NCA2NCA2NGg4MFYxOTJoNjR2MTYwaDQ4VjE5MmgyMDguNmMxMS45IDAgMjEuNS05LjYgMjEuNS0yMS41VjE1My43YzAtOC41LTUuMS0xNi4xLTEyLjktMTkuMmwtMjg2LjgtMTA4LjFDMTUwLjYgMTUuMyAxNDQuNCAxNiAxMzguMiAxNy44IDc5LjYgMzUgMzIgNzQgMzIgOTZoMzJ6bTEyOC02NGgxOTJ2OTZIODBoMjU2VjMyek01Ny4yIDYwLjhMMCA1Ni41VjQzOC41YzAgNDguNiAzOS40IDg4IDg4IDg4aDI3MiYzMjBDMTc5LjIgNDg3LjcgMTI4IDQyMi44IDEyOCA0MDZWMTkySDY0VjM1Mmg2NHYxMTJjMCAxNy43IDE0LjMgMzIgMzIgMzJoODBoMTYwVjM1Mmg2NGMyNi41IDAgNDguMy0yMS43IDQ4LjMtNDguM1YyMTQuNWMwLTIzLjUtMTMuNi0zOS44LTMwLjUtNDQuNkw2Mi44IDcyLjdjLTQuMS0xLjUtOC40LTEuNy0xMi42LS44QzE2LjUgODAuOCAwIDExNy44IDAgMTU3LjlWNDMyYzAgNTMuNyAzMi43IDg2LjcgNzYuNyAxMDcuM0w1MTIgNTExLjVWMjE2LjZjMC01My0zMi02NC02NC02NGg1Ni4zYzI2LjUgMCA0OC.MyAyxLjcgNDguMyA0OC4zVjQwNi45YzAgMjUuNS0xNC4yIDQxLjUtMzAuOCA0Ni4ybC0zODIgNTkuM2MtNC4xLjYtOC40LjgtMTIuNi44WiIvPjwvc3ZnPg==" class="social-icon" alt="Instagram"></a>
+                            <a href="#" aria-label="تلگرام"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OTYgNTEyIj48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNMjQ4IDhDMTExLjEgOCAwIDExOS4xIDAgMjU2czExMS4xIDI0OCAyNDggMjQ4IDI0OC0xMTEuMSAyNDgtMjQ4UzM4NC45IDggMjQ4IDh6bTE2Mi4yIDExOS41cy01LjcgMjQ0LjYtNi42IDI1NC42Yy0xLjMuNS05LjMuNi05LjMuNi0xNS40IDQuNC0yMS41LTUuMi0yMS41LTUuMi0xMS44LTEwLjItMTkuNC0yNC41LTQ2LjctNjUuMy0xMC0xNC43IDEyLjgtNy43IDIxLjMtMi44IDAgMCAxNTUgODguMiAxNTkuNyAxMjMuMmMuNSAzLjctNS45IDguNC01LjkgOC40LTMuMyAzLjMtMTAuNSAzLjMtMTUuNiAzLjMtMTkuMyAwLTQxLjctMjAuMy02NS4yLTM2LjYtNTUuOS0zNy40LTE0Mi05Ni40LTE1Ni40LTEwNC42LTEuNy0uOS0zLjQtMS41LTUuMS0xLjhjLTMuMy0uNi01LjUtMS42LTUuNS0xLjYtMTcuNS02LjEtMjUuNS0xMC4xLTI1LjUtMTQuNCAwLTQuMyA1LjgtNy4xIDcuNy04LjUtMjkuMy05LjEtMzcuOC0yMy41LTQwLjctMzEuNS0yLjktOC4yLTMuMi0xNy0yLjctMjYuMy40LTcuNiA2LjItMTUuMyA1MS45LTQyLjUgNzIuOC00My41IDE0MS45LTg1LjcgMjAwLTExOS4zIDUuOS0zLjQgOS4xLTUuNiAxMi45LTguNSAxLjMtLjkgMy43LTIuMyA1LjktMi41IDMuMy0uMyAzLjgtMi40IDMuOC02LjJsLjQtMTUuMmwuNC00OC41YzAgLTIzLjEtMi42LTc5LjEtNi4yLTc5LjFzLTIzLjggMi43LTIzLjggMi43eiIvPjwvc3ZnPg==" class="social-icon" alt="Telegram"></a>
+                        </div>
+                    </div>
+                    <div class="contact-form-container">
+                        <h3>فرم تماس</h3>
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">نام کامل:</label>
+                                <input type="text" id="name" name="name" required aria-required="true">
+                                <small class="error-message" id="name-error"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">ایمیل:</label>
+                                <input type="email" id="email" name="email" required aria-required="true">
+                                <small class="error-message" id="email-error"></small>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">پیام شما:</label>
+                                <textarea id="message" name="message" rows="5" required aria-required="true"></textarea>
+                                <small class="error-message" id="message-error"></small>
+                            </div>
+                            <button type="submit" class="btn btn-primary">ارسال پیام</button>
+                            <div id="form-status-message" class="form-status-message"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="main-footer">
+        <div class="container footer-content">
+            <div class="footer-section contact-info-footer">
+                <h3>تماس با مدرسه</h3>
+                <p>آدرس: کرمانشاه، شهرک تیمسار نجفی، بلوار زن، خیابان قائم</p>
+                <p>تلفن: <a href="tel:+988338383527">۰۸۳-۳۸۳۸۳۵۲۷</a></p>
+                <p>ایمیل: <a href="mailto:info@najafischool.ir">info@najafischool.ir</a></p>
+            </div>
+            <div class="footer-section quick-links">
+                <h3>لینک‌های سریع</h3>
+                <ul>
+                    <li><a href="#news">اخبار</a></li>
+                    <li><a href="#events">رویدادها</a></li>
+                    <li><a href="#staff">کارکنان</a></li>
+                    <li><a href="#about">درباره ما</a></li>
+                </ul>
+            </div>
+            <div class="footer-section social-media-footer">
+                <h3>ما را دنبال کنید</h3>
+                <div class="social-icons-footer">
+                    <a href="#" aria-label="اینستاگرام"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48cGF0aCBmaWxsPSIjRkZGRkZGIiBkPSJNNjQgMzUydjgwYzAgMTcuNyAxNC4zIDMyIDMyIDMyaDgwVjM1Mkg2NHptMzIwIDBoLTgwVjQ2NGg4MGMxNy43IDAgMzItMTQuMyAzMi0zMlYzNTJ6TTAgOTZjMC01MyAzMi02NC02NC02NGg0NDhjMzUuMyAwIDY0IDI4LjcgNjQgNjRWNDA1LjdjLTEuOCAxNy45LTQuMyAzNS42LTE3LjMgNDguNy0xMyAxMy0yOS41IDE4LjItNDcuNSAxOC42LTEuNS4xLTMgLjEtNC41LjFIMTA4LjdjLTQuMiAwLTguNC0uMy0xMi42LS42QzY0LjggNDYwLjMgMjggNDI3LjQgMjggMzk3LjVWMTU3LjljMCAzMiA2NCA2NCA2NCA2NGg4MFYxOTJoNjR2MTYwaDQ4VjE5MmgyMDguNmMxMS45IDAgMjEuNS05LjYgMjEuNS0yMS41VjE1My43YzAtOC41LTUuMS0xNi4xLTEyLjktMTkuMmwtMjg2LjgtMTA4LjFDMTUwLjYgMTUuMyAxNDQuNCAxNiAxMzguMiAxNy44IDc5LjYgMzUgMzIgNzQgMzIgOTZoMzJ6bTEyOC02NGgxOTJ2OTZIODBoMjU2VjMyek01Ny4yIDYwLjhMMCA1Ni41VjQzOC41YzAgNDguNiAzOS40IDg4IDg4IDg4aDI3MiYzMjBDMTc5LjIgNDg3LjcgMTI4IDQyMi44IDEyOCA0MDZWMTkySDY0VjM1Mmg2NHYxMTJjMCAxNy43IDE0LjMgMzIgMzIgMzJoODBoMTYwVjM1Mmg2NGMyNi41IDAgNDguMy0yMS43IDQ4LjMtNDguM1YyMTQuNWMwLTIzLjUtMTMuNi0zOS44LTMwLjUtNDQuNkw2Mi44IDcyLjdjLTQuMS0xLjUtOC40LTEuNy0xMi42LS44QzE2LjUgODAuOCAwIDExNy44IDAgMTU3LjlWNDMyYzAgNTMuNyAzMi43IDg2LjcgNzYuNyAxMDcuM0w1MTIgNTExLjVWMjE2LjZjMC01My0zMi02NC02NC02NGh1MjcuMWw2NC40LTIxLjVMNDQ4IDQzMy43VjE1My43YzAtOC41LTUuMS0xNi4xLTEyLjktMTkuMmwtMjg2LjgtMTA4LjFDMTUwLjYgMTUuMyAxNDQuNCAxNiAxMzguMiAxNy44IDc5LjYgMzUgMzIgNzQgMzIgOTZoMzJ6bTEyOC02NGgxOTJ2OTZIODBoMjU2VjMyek01Ny4yIDYwLjhMMCA1Ni41VjQzOC41YzAgNDguNiAzOS40IDg4IDg4IDg4aDI3MiAzMjBDMTc5LjIgNDg3LjcgMTI4IDQyMi44IDEyOCA0MDZWMTkySDY0VjM1Mmg2NHYxMTJjMCAxNy43IDE0LjMgMzIgMzIgMzJoODBoMTYwVjM1Mmg2NGMyNi41IDAgNDguMy0yMS43IDQ4LjMtNDguM1YyMTQuNWMwLTIzLjUtMTMuNi0zOS44LTMwLjUtNDQuNkw2Mi44IDcyLjdjLTQuMS0xLjUtOC40LTEuNy0xMi42LS44QzE2LjUgODAuOCAwIDExNy44IDAgMTU3LjlWNDMyYzAgNTMuNyAzMi43IDg2LjcgNzYuNyAxMDcuM0w1MTIgNTExLjVWMjE2LjZjMC01My0zMi02NC02NC02NGh1MjcuMWw2NC40LTIxLjVMNDQ4IDQzMy43VjE1My43YzAtOC41LTUuMS0xNi4xLTEyLjktMTkuMmwtMjg2LjgtMTA4LjFDMTUwLjYgMTUuMyAxNDQuNCAxNiAxMzguMiAxNy44IDc5LjYgMzUgMzIgNzQgMzIgOTZoMzJ6bTEyOC02NGgxOTJ2OTZIODBoMjU2VjMyek01Ny4yIDYwLjhMMCA1Ni41VjQzOC41YzAgNDguNiAzOS40IDg4IDg4IDg4aDI3MiAzMjBDMTc5LjIgNDg3LjcgMTI4IDQyMi44IDEyOCA0MDZWMTkySDY0VjM1Mmg2NHYxMTJjMCAxNy43IDE0LjMgMzIgMzIgMzJoODBoMTYwVjM1Mmg2NGMyNi41IDAgNDguMy0yMS43IDQ4LjMtNDguM1YyMTQuNWMwLTIzLjUtMTMuNi0zOS44LTMwLjUtNDQuNkw2Mi44IDcyLjdjLTQuMS0xLjUtOC40LTEuNy0xMi42LS44QzE2LjUgODAuOCAwIDExNy44IDAgMTU3LjlWNDMyYzAgNTMuNyAzMi43IDg2LjcgNzYuNyAxMDcuM0w1MTIgNTExLjVWMjE2LjZjMC01My0zMi02NC02NC02NGh1MjcuMWw2NC40LTIxLjVMNDQ4IDQzMy43VjE1My43YzAtOC41LTUuMS0xNi4xLTEyLjktMTkuMmwtMjg2LjgtMTA4LjFDMTUwLjYgMTUuMyAxNDQuNCAxNiAxMzguMiAxNy44IDc5LjYgMzUgMzIgNzQgMzIgOTZoMzJ6bTEyOC02NGgxOTJ2OTZIODBoMjU2VjMyek01Ny4yIDYwLjhMMCA1Ni41VjQzOC41YzAgNDguNiAzOS40IDg4IDg4IDg4aDI3MiAzMjBDMTc5LjIgNDg3LjcgMTI4IDQyMi44IDEyOCA0MDZWMTkySDY0VjM1Mmg2NHYxMTJjMCAxNy43IDE0LjMgMzIgMzIgMzJoODBoMTYwVjM1Mmg2NGMyNi41IDAgNDguMy0yMS43IDQ4LjMtNDguM1YyMTQuNWMwLTIzLjUtMTMuNi0zOS44LTMwLjUtNDQuNkw2Mi44IDcyLjdjLTQuMS0xLjUtOC40LTEuNy0xMi42LS44QzE2LjUgODAuOCAwIDExNy44IDAgMTU3LjlWNDMyYzAgNTMuNyAzMi43IDg2LjcgNzYuNyAxMDcuM0w1MTIgNTExLjVWMjE2LjZjMC01My0zMi02NC02NC02NGh1MjcuMWw2NC40LTIxLjVMNDQ4IDQzMy43VjE1My43YzAtOC41LTUuMS0xNi4xLTEyLjktMTkuMmwtMjg2LjgtMTA4LjFDMTUwLjYgMTUuMyAxNDQuNCAxNiAxMzguMiAxNy44IDc5LjYgMzUgMzIgNzQgMzIgOTZoMzJ6bTEyOC02NGgxOTJ2OTZIODBoMjU2VjMyek01Ny4yIDYwLjhMMCA1Ni41VjQzOC41YzAgNDguNiAzOS40IDg4IDg4IDg4aDI3MiAzMjBDMTc5LjIgNDg3LjcgMTI4IDQyMi44IDEyOCA0MDZWMTkySDY0VjM1Mmg2NHYxMTJjMCAxNy43IDE0LjMgMzIgMzIgMzJoODBoMTYwVjM1Mmg2NGMyNi41IDAgNDguMy0yMS43IDQ4LjMtNDguM1YyMTQuNWMwLTIzLjUtMTMuNi0zOS44LTMwLjUtNDQuNkw2Mi44IDcyLjdjLTQuMS0xLjUtOC40LTEuNy0xMi42LS44QzE2LjUgODAuOCAwIDExNy44IDAgMTU3LjlWNDMyYzAgNTMuNyAzMi43IDg2LjcgNzYuNyAxMDcuM0w1MTIgNTExLjVWMjE2LjZjMC01My0zMi02NC02NC02NGh1MjcuMWw2NC40LTIxLjVMNDQ4IDQzMy43VjE1My43YzAtOC41LTUuMS0xNi4xLTEyLjktMTkuMmwtMjg2LjgtMTA4LjFDMTUwLjYgMTUuMyAxNDQuNCAxNiAxMzguMiAxNy44IDc5LjYgMzUgMzIgNzQgMzIgOTZoMzJ6bTEyOC02NGgxOTJ2OTZIODBoMjU2VjMyek01Ny4yIDYwLjhMMCA1Ni41VjQzOC41YzAgNDguNiAzOS40IDg4IDg4IDg4aDI3MiAzMjBDMTc5LjIgNDg3LjcgMTI4IDQyMi44IDEyOCA0MDZWMTkySDY0VjM1Mmg2NHYxMTJjMCAxNy43IDE0LjMgMzIgMzIgMzJoODBoMTYwVjM1Mmg2NGMyNi41IDAgNDguMy0yMS43IDQ4LjMtNDguM1YyMTQuNWMwLTIzLjUtMTMuNi0zOS44LTMwLjUtNDQuNkw2Mi44IDcyLjdjLTQuMS0xLjUtOC40LTEuNy0xMi42LS44QzE2LjUgODAuOCAwIDExNy44IDAgMTU3LjlWNDMyYzAgNTMuNyAzMi43IDg2LjcgNzYuNyAxMDcuM0w1MTIgNTExLjVWMjE2LjZjMC01My0zMi02NC02NC02NGh1MjcuMWw2NC40LTIxLjVMNDQ4IDQzMy43VjE1My43YzAtOC41LTUuMS0xNi4xLTEyLjktMTkuMmwtMjg2LjgtMTA4LjFDMTUwLjYgMTUuMyAxNDQuNCAxNiAxMzguMiAxNy44IDc5LjYgMzUgMzIgNzQgMzIgOTZoMzJ6bTEyOC02NGgxOTJ2OTZIODBoMjU2VjMyek01Ny4yIDYwLjhMMCA1Ni41VjQzOC41YzAgNDguNiAzOS40IDg4IDg4IDg4aDI3MiAzMjBDMTc5LjIgNDg3LjcgMTI4IDQyMi44IDEyOCA0MDZWMTkySDY0VjM1Mmg2NHYxMTJjMCAxNy43IDE0LjMgMzIgMzIgMzJoODBoMTYwVjM1Mmg2NGMyNi41IDAgNDguMy0yMS43IDQ4LjMtNDguM1YyMTQuNWMwLTIzLjUtMTMuNi0zOS44LTMwLjUtNDQuNkw2Mi44IDcyLjdjLTQuMS0xLjUtOC40LTEuNy0xMi42LS44QzE2LjUgODAuOCAwIDExNy44IDAgMTU3LjlWNDMyYzAgNTMuNyAzMi43IDg2LjcgNzYuNyAxMDcuM0w1MTIgNTExLjVWMjE2LjZjMC01My0zMi02NC02NC02NGh1MjcuMWw2NC40LTIxLjVMNDQ4IDQzMy43VjE1My43YzAtOC41LTUuMS0xNi4xLTEyLjktMTkuMmwtMjg2LjgtMTA4LjFDMTUwLjYgMTUuMyAxNDQuNCAxNiAxMzguMiAxNy44IDc5LjYgMzUgMzIgNzQgMzIgOTáhMzczLjggMjM1LjggNDg3LjYgMjY3LjkgOTUuMyAxODcuMmMxMy44IDE1LjcgMzAuOCAyNS4yIDQ3LjIgMjguNCA1LjQuNyAxMS44LjggMTguMy44SDM4MS43YzQ1LjggMCA4My40LTM3LjYgODMuNC04My40VjE0Ni4zYzAtMzIuMy0xOC45LTQ2LjEtMzkuMi01MS44bC00NDAtMTI0QzMyMi42LTIuNyAyOTkuOCAwIDI4Mi45LjFjLTM4LjIuMi03NC4xIDExLjctMTAzLjMgMzcuMi0yOS40IDI1LjctNDUuMSA1OS42LTU0LjggOTUuOC05LjcgMzYuMi0xMC4yIDcxLjQtMi4xIDEwNS41IDIuNyAxMC45IDE1LjEgMzguNyAxNS4xIDM4LjdIMTg0LjRjLTIuNC0yLjYtMTcuNS0xOC42LTI0LjItMjUuNy02LjMtNy41LTUuOC0xNy43LS42LTI1LjJzNDYuMS02NC44IDU4LjQtODEuOWM0LjktNi44IDIxLjEtMTguMiAyNC4yLTIxLjQtNS41LTQzLjctMTIuMi04Ni41LTIyLjUtMTI4LjIgMTcuMy0xMC41IDMyLjUtMTcuOCAzNy43LTI0LjcgMTYuMi0yMS44IDI5LjUtNDQuMyAzOS4zLTY1LjcgMjMuOC01Mi42IDM3LjctMTA3LjcgMzcuNy0xNjMuMmgwTDI0OCAyMjguOWwtNDkuMi0zNS40em02NS43LTExNi41c2LTkuNiAzOTMuMi0xMi4xIDQxMC41Yy0xLjYuNi0xMi45LjctMTIuOS43LTIxLjMgNS45LTI5LjcgLTMuMy0yOS43LTMuMy0xNi4zLTEzLjItMjYuOS0zMy43LTY0LjUtODkuNi0xMy44LTIwLjIgMTcuNy0xMC42IDI5LjQtMy45IDAgMCAyMTQgMTIyLjMgMjIwLjkgMTcwLjZjLjcgNS4xLTguMiAxMS40LTguMiAxMS40LTQuNiA0LjYtMTQuNS0xNC40LTE0LjUtMTQuNC00LjYgNC42LTExLjggMTAuMi0yMy45IDE4LjItMzAuMyAyMC40LTYzLjQgNDIuMy0xMDQuMyA2Ny4zLTU2LjEgMzYuNi0xNDQuOCAxMDAuMi0xNjQuNyAxMTIuNy0yLjQuMS00LjkuMi03LjMuMy00LjYgMC05LjEuMS0xMy42LjQtMjIuOS0uMy00MS4zLTExLjUtNTEuMi0yMC42LTI0LjMtMjIuNi02NS42LTg5LjMtOTAuNy0xMTQuOC0yMi44LTIzLjUtMzcuOC0zNy4zLTM3LjgtNjEuNiAwLTI0LjQgMTUuNC00MC42IDE3LjctNDIuNy0xNS41LTUuMi0yNy43LTE1LjUtMzcuMi0yNS44LTkuNS0xMC40LTkuNS0yMy4yLS41LTQwLjIgNi41LTEzLjIgNDkuNC01MS44IDcyLTcwLjcgNjAuNy00OS40IDE1Ni42LTExOS42IDIyOC42LTE2NS4zIDcuOS01LjIgMTIuNi04LjYgMTcuOS0xMi41IDEtLjggMi41LTQuNyA0LjYtNS40IDQuOS0xLjcgNS4zLTMuMSA1LjctOS45VjYwLjd2LTQ3LjZzLTEuOS0zLjQtMjIuOC0yLjdsLTQ3LjMgMi4zem0tMzUuNiAyMC42bC00MS42IDMyLjVjLTEyLjItMTEuMi0xNy40LTI0LjktMTcuNC0zOS44IDAtMTYuNiAzLjItNDUuMyA1LjctNjQuMyAxLjQtMS42IDIuNy0yLjkgNC00bDE2LjMtNC41IDE1LjUgMjAuNmwyMS44IDI0LjNsMTQuNiAxNS44eiIvPjwvc3ZnPg==" class="social-icon" alt="Telegram"></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 1402 کلیه حقوق برای مدرسه شهید علی اکبر نجفی محفوظ است.</p>
+            <p>طراحی و توسعه توسط: <a href="https://github.com/YourGitHub" target="_blank">Your Name/Company</a></p>
+        </div>
+    </footer>
+
+    <!-- Admin Panel (Hidden by default) -->
+    <div id="admin-overlay" class="admin-overlay">
+        <div class="admin-panel">
+            <h2>پنل مدیریت</h2>
+            <p>این یک پنل مدیریت آزمایشی سمت کلاینت است.</p>
+            <button class="close-admin-btn" aria-label="بستن پنل مدیریت">&times;</button>
+
+            <!-- Notification Bar Management -->
+            <div class="admin-section">
+                <h3>مدیریت نوار اطلاع‌رسانی</h3>
+                <label for="admin-notification-text">متن اطلاع‌رسانی:</label>
+                <input type="text" id="admin-notification-text" class="admin-input" placeholder="متن جدید نوار اطلاع‌رسانی">
+                <div class="admin-checkbox-group">
+                    <input type="checkbox" id="admin-notification-visibility">
+                    <label for="admin-notification-visibility">نمایش نوار اطلاع‌رسانی</label>
+                </div>
+                <button id="save-notification-btn" class="admin-btn">ذخیره نوار اطلاع‌رسانی</button>
+            </div>
+
+            <!-- News Management -->
+            <div class="admin-section">
+                <h3>مدیریت اخبار</h3>
+                <form id="admin-news-form" class="admin-form">
+                    <input type="hidden" id="admin-news-id">
+                    <label for="admin-news-title">عنوان:</label>
+                    <input type="text" id="admin-news-title" class="admin-input" required>
+                    <label for="admin-news-date">تاریخ (YYYY/MM/DD):</label>
+                    <input type="text" id="admin-news-date" class="admin-input" placeholder="مثال: ۱۴۰۲/۰۷/۱۵" required>
+                    <label for="admin-news-image">لینک تصویر:</label>
+                    <input type="url" id="admin-news-image" class="admin-input" required>
+                    <label for="admin-news-description">توضیح کوتاه:</label>
+                    <textarea id="admin-news-description" class="admin-input" rows="3" required></textarea>
+                    <button type="submit" class="admin-btn">افزودن/بروزرسانی خبر</button>
+                </form>
+                <div class="admin-list-container">
+                    <h4>لیست اخبار</h4>
+                    <ul id="admin-news-list" class="admin-item-list"></ul>
+                </div>
+            </div>
+
+            <!-- Events Management -->
+            <div class="admin-section">
+                <h3>مدیریت رویدادها</h3>
+                <form id="admin-event-form" class="admin-form">
+                    <input type="hidden" id="admin-event-id">
+                    <label for="admin-event-title">عنوان:</label>
+                    <input type="text" id="admin-event-title" class="admin-input" required>
+                    <label for="admin-event-date">تاریخ و زمان (ISO 8601):</label>
+                    <input type="datetime-local" id="admin-event-date" class="admin-input" required>
+                    <label for="admin-event-description">توضیح:</label>
+                    <textarea id="admin-event-description" class="admin-input" rows="3" required></textarea>
+                    <button type="submit" class="admin-btn">افزودن/بروزرسانی رویداد</button>
+                </form>
+                <div class="admin-list-container">
+                    <h4>لیست رویدادها</h4>
+                    <ul id="admin-events-list" class="admin-item-list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
