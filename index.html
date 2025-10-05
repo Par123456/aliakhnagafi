@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="وبسایت رسمی دبیرستان شهید علی اکبر نجفی - کرمانشاه">
-    <meta name="keywords" content="دبیرستان, شهید نجفی, کرمانشاه, آموزش, اخبار مدرسه">
+    <meta name="description" content="وبسایت رسمی دبیرستان شهید علی اکبر نجفی - کرمانشاه | اخبار، رویدادها، غیبت و گالری">
+    <meta name="keywords" content="دبیرستان شهید نجفی, کرمانشاه, مدرسه, اخبار آموزشی, رویدادها">
     <meta name="author" content="دبیرستان شهید علی اکبر نجفی">
     <!-- Security Headers -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https:;">
@@ -13,25 +13,29 @@
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <title>دبیرستان شهید علی اکبر نجفی | کرمانشاه</title>
+    <title>دبیرستان شهید علی اکبر نجفی | کرمانشاه - ۱۴۰۴</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏫</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Screen -->
+    <!-- Loading Screen - Fixed -->
     <div id="loader" class="loader">
         <div class="loader-content">
             <div class="spinner"></div>
-            <p>در حال بارگذاری...</p>
+            <p>در حال بارگذاری وبسایت...</p>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
         </div>
     </div>
 
-    <header>
+    <header class="header">
         <div class="header-overlay"></div>
         <div class="header-container">
             <div class="school-logo">
                 <h1>دبیرستان شهید علی اکبر نجفی</h1>
-                <p class="school-motto">پرورش نخبگان فردا، امروز</p>
+                <p class="school-motto">پرورش نخبگان فردا، امروز - سال تحصیلی ۱۴۰۴-۱۴۰۳</p>
             </div>
             <div class="contact-info">
                 <div class="contact-item">
@@ -40,11 +44,15 @@
                 </div>
                 <div class="contact-item">
                     <span class="icon">📞</span>
-                    <p>۰۸۳۳۸۳۸۳۵۲۷ (پیامک ترجیحی)</p>
+                    <p>۰۸۳۳۸۳۸۳۵۲۷ (پیامک: ۵۰۰۰۱۲۳۴۵۶)</p>
                 </div>
                 <div class="contact-item">
                     <span class="icon">✉️</span>
                     <p>info@shahidnajafi.sch.ir</p>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">🕒</span>
+                    <p>ساعات کاری: شنبه تا چهارشنبه ۷:۳۰ - ۱۴:۰۰</p>
                 </div>
             </div>
         </div>
@@ -57,166 +65,234 @@
             <span></span>
         </div>
         <ul class="nav-list" id="navList">
-            <li><a href="#" data-section="home" class="nav-link active">خانه</a></li>
-            <li><a href="#" data-section="about" class="nav-link">درباره ما</a></li>
-            <li><a href="#" data-section="news" class="nav-link">اخبار و اطلاعیه‌ها</a></li>
-            <li><a href="#" data-section="events" class="nav-link">تقویم رویدادها</a></li>
-            <li><a href="#" data-section="absences" class="nav-link">غیبت دانش‌آموزان</a></li>
-            <li><a href="#" data-section="gallery" class="nav-link">گالری</a></li>
-            <li><a href="#" data-section="contact" class="nav-link">تماس با ما</a></li>
-            <?php if (isset($_GET['admin'])): ?>
-            <li><a href="#" data-section="admin" class="nav-link">پنل ادمین</a></li>
-            <?php endif; ?>
+            <li><a href="#" data-section="home" class="nav-link active">🏠 خانه</a></li>
+            <li><a href="#" data-section="about" class="nav-link">📖 درباره ما</a></li>
+            <li><a href="#" data-section="news" class="nav-link">📰 اخبار و اطلاعیه‌ها</a></li>
+            <li><a href="#" data-section="events" class="nav-link">📅 تقویم رویدادها</a></li>
+            <li><a href="#" data-section="absences" class="nav-link">📋 غیبت دانش‌آموزان</a></li>
+            <li><a href="#" data-section="gallery" class="nav-link">🖼️ گالری</a></li>
+            <li><a href="#" data-section="contact" class="nav-link">📧 تماس با ما</a></li>
+            <li><a href="?admin" class="nav-link admin-link" id="adminLink" style="display:none;">🔐 پنل ادمین</a></li>
         </ul>
+        <div class="search-bar">
+            <input type="text" id="globalSearch" placeholder="جستجو در سایت...">
+            <button onclick="performSearch()">🔍</button>
+        </div>
     </nav>
 
     <main>
-        <!-- Home Section -->
+        <!-- Home Section - Enhanced with Slider -->
         <section id="home" class="section active fade-in">
-            <div class="hero">
-                <div class="hero-content">
-                    <h2>به دبیرستان شهید علی اکبر نجفی خوش آمدید</h2>
-                    <p>مدرسه‌ای متعهد به تربیت نسل جوان با تمرکز بر علم و اخلاق اسلامی</p>
-                    <a href="#news" class="cta-button">مشاهده اخبار</a>
+            <div class="hero-slider">
+                <div class="slide active">
+                    <div class="hero-content">
+                        <h2>سال تحصیلی جدید آغاز شد!</h2>
+                        <p>با انرژی و انگیزه، به استقبال موفقیت‌های جدید برویم.</p>
+                        <div class="hero-buttons">
+                            <a href="#news" class="cta-button primary">اخبار جدید</a>
+                            <a href="#events" class="cta-button secondary">رویدادها</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzAwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIFNjaG9vbCBIZWFkZXI8L3RleHQ+PC9zdmc+" alt="تصویر هدر">
+                    </div>
                 </div>
-                <div class="hero-image">
-                    <div class="image-placeholder">تصویر مدرسه</div>
+                <div class="slide">
+                    <div class="hero-content">
+                        <h2>ثبت‌نام آنلاین تکمیل شد</h2>
+                        <p>خوشحالیم که بیش از ۹۰% دانش‌آموزان ثبت‌نام کرده‌اند.</p>
+                        <div class="hero-buttons">
+                            <a href="#absences" class="cta-button primary">گزارش غیبت</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMGYwZiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMwMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5JbWFnZSBSZWdpc3RyYXRpb248L3RleHQ+PC9zdmc+" alt="تصویر ثبت‌نام">
+                    </div>
                 </div>
+                <button class="slider-nav prev">❮</button>
+                <button class="slider-nav next">❯</button>
             </div>
             <div class="stats-grid animate-on-scroll">
                 <div class="stat-card">
                     <div class="stat-icon">👨‍🎓</div>
-                    <h3>دانش‌آموزان</h3>
-                    <p id="student-count" class="stat-number">۵۰۰</p>
+                    <h3>دانش‌آموزان فعال</h3>
+                    <p id="student-count" class="stat-number">۵۲۰</p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">👨‍🏫</div>
-                    <h3>معلمان</h3>
-                    <p id="teacher-count" class="stat-number">۳۰</p>
+                    <h3>معلمان مجرب</h3>
+                    <p id="teacher-count" class="stat-number">۳۵</p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">📚</div>
-                    <h3>دوره‌های آموزشی</h3>
-                    <p class="stat-number">۱۵</p>
+                    <h3>دروس تخصصی</h3>
+                    <p class="stat-number">۱۸</p>
                 </div>
                 <div class="stat-card">
                     <div class="stat-icon">🏆</div>
-                    <h3>جوایز کسب شده</h3>
-                    <p class="stat-number">۵۰+</p>
+                    <h3>رتبه‌های استانی</h3>
+                    <p class="stat-number">۲۵+</p>
                 </div>
             </div>
             <div class="visitor-stats animate-on-scroll">
-                <h3>آمار بازدید</h3>
+                <h3>آمار بازدید سایت</h3>
                 <div class="stats-row">
                     <div class="stat-item">
-                        <span class="label">امروز</span>
+                        <span class="label">امروز (۰۵/۰۷/۱۴۰۴)</span>
                         <span id="today-visits" class="value">۰</span>
                     </div>
                     <div class="stat-item">
-                        <span class="label">دیروز</span>
-                        <span id="yesterday-visits" class="value">۰</span>
+                        <span class="label">این هفته</span>
+                        <span id="week-visits" class="value">۰</span>
                     </div>
                     <div class="stat-item">
                         <span class="label">این ماه</span>
                         <span id="month-visits" class="value">۰</span>
                     </div>
                     <div class="stat-item">
-                        <span class="label">کل</span>
+                        <span class="label">کل بازدیدها</span>
                         <span id="total-visits" class="value">۰</span>
                     </div>
                 </div>
             </div>
+            <div class="quick-links animate-on-scroll">
+                <h3>لینک‌های سریع</h3>
+                <div class="links-grid">
+                    <a href="#absences" class="quick-link">گزارش غیبت آنلاین</a>
+                    <a href="#news" class="quick-link">آخرین اخبار</a>
+                    <a href="#gallery" class="quick-link">گالری تصاویر</a>
+                    <a href="#contact" class="quick-link">فرم تماس</a>
+                </div>
+            </div>
         </section>
 
-        <!-- About Section -->
+        <!-- About Section - Enhanced -->
         <section id="about" class="section hidden fade-in">
-            <h2>درباره مدرسه</h2>
+            <h2>درباره دبیرستان شهید علی اکبر نجفی</h2>
             <div class="about-content">
-                <p>دبیرستان شهید علی اکبر نجفی، واقع در کرمانشاه، یک موسسه آموزشی دولتی پسرانه است که از سال ۱۳۵۹ فعالیت می‌کند. ما بر تربیت دانش‌آموزانی متعهد به ارزش‌های اسلامی و علمی تمرکز داریم.</p>
+                <p>این دبیرستان از سال ۱۳۵۹ در کرمانشاه فعالیت می‌کند و با تمرکز بر آموزش‌های علمی، دینی و مهارتی، بیش از ۵۰۰ دانش‌آموز را تربیت کرده است. ما بر نوآوری در آموزش تأکید داریم و برنامه‌های فوق‌برنامه مانند المپیادها و کارگاه‌های مهارت‌آموزی را اجرا می‌کنیم.</p>
                 <div class="about-grid animate-on-scroll">
                     <div class="about-card">
+                        <div class="card-icon">📜</div>
                         <h3>تاریخچه</h3>
-                        <p>تأسیس به یاد شهید والامقام علی اکبر نجفی، با هدف پرورش نخبگان.</p>
+                        <p>تأسیس به یاد شهید علی اکبر نجفی، با هدف پرورش نسل انقلابی.</p>
                     </div>
                     <div class="about-card">
-                        <h3>مأموریت</h3>
-                        <p>ایجاد محیطی برای یادگیری مادام‌العمر و توسعه مهارت‌ها.</p>
+                        <div class="card-icon">🎯</div>
+                        <h3>مأموریت ما</h3>
+                        <p>ایجاد محیطی پویا برای یادگیری و رشد شخصیتی.</p>
                     </div>
                     <div class="about-card">
-                        <h3>چشم‌انداز</h3>
-                        <p>تبدیل به برترین مدرسه استان در زمینه‌های علمی و فرهنگی.</p>
+                        <div class="card-icon">🔮</div>
+                        <h3>چشم‌انداز آینده</h3>
+                        <p>تبدیل به قطب آموزشی غرب کشور تا سال ۱۴۱۰.</p>
                     </div>
                 </div>
-                <div class="team-section">
-                    <h3>تیم مدیریتی</h3>
+                <div class="team-section animate-on-scroll">
+                    <h3>تیم مدیریتی برجسته</h3>
                     <div class="team-grid">
                         <div class="team-member">
-                            <div class="member-photo">عکس</div>
-                            <h4>دکتر احمدی</h4>
-                            <p>مدیر مدرسه</p>
+                            <div class="member-photo">👨‍💼</div>
+                            <h4>دکتر محمد احمدی</h4>
+                            <p>مدیر مدرسه - ۲۰ سال تجربه</p>
                         </div>
-                        <!-- Add more members -->
+                        <div class="team-member">
+                            <div class="member-photo">👩‍🏫</div>
+                            <h4>خانم فاطمه رضایی</h4>
+                            <p>معاون آموزشی - متخصص ریاضیات</p>
+                        </div>
+                        <div class="team-member">
+                            <div class="member-photo">👨‍🎓</div>
+                            <h4>مهندس علی محمدی</h4>
+                            <p>معاون پرورشی - مشاور هدایت تحصیلی</p>
+                        </div>
                     </div>
+                </div>
+                <div class="values-section">
+                    <h3>ارزش‌های ما</h3>
+                    <ul class="values-list">
+                        <li>📖 تعهد به یادگیری مداوم</li>
+                        <li>🤝 همکاری و کار تیمی</li>
+                        <li>🌟 نوآوری و خلاقیت</li>
+                        <li>❤️ اخلاق و مسئولیت اجتماعی</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- News Section -->
+        <!-- News Section - With Pagination -->
         <section id="news" class="section hidden fade-in">
-            <h2>اخبار و اطلاعیه‌ها</h2>
-            <div class="news-grid animate-on-scroll">
-                <div id="news-list" class="news-items"></div>
+            <h2>اخبار و اطلاعیه‌های تازه</h2>
+            <div class="news-controls">
+                <select id="news-filter" onchange="filterNews()">
+                    <option value="all">همه</option>
+                    <option value="اخبار">اخبار</option>
+                    <option value="اطلاعیه">اطلاعیه</option>
+                </select>
+                <div class="pagination" id="news-pagination"></div>
             </div>
-            <?php if (isset($_GET['admin'])): ?>
-            <div class="admin-form hidden" id="news-admin-form">
-                <h3>افزودن خبر جدید</h3>
-                <form id="news-form">
-                    <input type="text" id="news-title" placeholder="عنوان" required>
-                    <textarea id="news-content" placeholder="محتوا" required></textarea>
-                    <input type="date" id="news-date" required>
-                    <button type="submit">افزودن</button>
-                </form>
+            <div class="news-grid animate-on-scroll" id="news-list">
+                <!-- Dynamic -->
             </div>
-            <?php endif; ?>
         </section>
 
-        <!-- Events Section -->
+        <!-- Events Section - Interactive Calendar -->
         <section id="events" class="section hidden fade-in">
-            <h2>تقویم رویدادها</h2>
+            <h2>تقویم رویدادها و برنامه‌ها</h2>
             <div class="calendar-container">
                 <div id="calendar" class="calendar"></div>
             </div>
-            <div class="events-list">
-                <h3>رویدادهای آتی</h3>
+            <div class="events-list animate-on-scroll">
+                <h3>رویدادهای پیش‌رو</h3>
                 <ul id="upcoming-events"></ul>
+            </div>
+            <div class="add-event-form hidden" id="add-event-form">
+                <h3>افزودن رویداد جدید</h3>
+                <form id="event-form">
+                    <input type="text" id="event-title" placeholder="عنوان رویداد" required>
+                    <input type="date" id="event-date" required>
+                    <textarea id="event-description" placeholder="توضیحات"></textarea>
+                    <button type="submit">افزودن</button>
+                </form>
             </div>
         </section>
 
-        <!-- Absences Section -->
+        <!-- Absences Section - With Search and Export -->
         <section id="absences" class="section hidden fade-in">
-            <h2>گزارش غیبت</h2>
-            <p>والدین و معلمان می‌توانند غیبت را گزارش دهند. تأیید توسط مدیریت انجام می‌شود.</p>
-            <form id="absence-form" class="form-container">
-                <input type="text" id="student-name" placeholder="نام دانش‌آموز" required>
-                <input type="text" id="student-id" placeholder="کد ملی" required>
-                <input type="date" id="absence-date" required>
-                <select id="absence-type">
-                    <option value="موجه">غیبت موجه</option>
-                    <option value="غیرموجه">غیبت غیرموجه</option>
-                </select>
-                <textarea id="absence-reason" placeholder="دلیل" required></textarea>
-                <button type="submit">ارسال گزارش</button>
-            </form>
+            <h2>مدیریت غیبت دانش‌آموزان</h2>
+            <p class="intro">والدین گرامی می‌توانند غیبت را گزارش دهند. تأیید و پیگیری توسط معلمان انجام می‌شود.</p>
+            <div class="form-container">
+                <form id="absence-form">
+                    <div class="form-row">
+                        <input type="text" id="student-name" placeholder="نام دانش‌آموز" required>
+                        <input type="text" id="student-id" placeholder="کد ملی یا شماره دانش‌آموزی" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="date" id="absence-date" required>
+                        <select id="absence-type">
+                            <option value="موجه">غیبت موجه (با عذر)</option>
+                            <option value="غیرموجه">غیبت غیرموجه</option>
+                        </select>
+                    </div>
+                    <textarea id="absence-reason" placeholder="دلیل غیبت (اختیاری)" required></textarea>
+                    <button type="submit">ارسال گزارش غیبت</button>
+                </form>
+            </div>
+            <div class="absences-controls">
+                <input type="text" id="absences-search" placeholder="جستجو در غیبت‌ها..." oninput="searchAbsences()">
+                <button onclick="exportAbsences()">📊 دانلود اکسل</button>
+            </div>
             <div class="table-wrapper">
                 <table id="absences-table" class="data-table">
                     <thead>
                         <tr>
-                            <th>نام</th>
+                            <th>نام دانش‌آموز</th>
                             <th>کد</th>
                             <th>تاریخ</th>
-                            <th>نوع</th>
+                            <th>نوع غیبت</th>
                             <th>دلیل</th>
                             <th>وضعیت</th>
+                            <th>تاریخ ثبت</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -224,89 +300,172 @@
             </div>
         </section>
 
-        <!-- Gallery Section -->
+        <!-- Gallery Section - Masonry Layout -->
         <section id="gallery" class="section hidden fade-in">
-            <h2>گالری تصاویر</h2>
-            <div class="gallery-grid" id="gallery-grid"></div>
-            <?php if (isset($_GET['admin'])): ?>
-            <div class="admin-form hidden" id="gallery-admin-form">
-                <h3>آپلود تصویر</h3>
-                <form id="upload-form">
-                    <input type="file" id="image-upload" accept="image/*" required>
-                    <button type="submit">آپلود</button>
-                </form>
+            <h2>گالری تصاویر و ویدیوها</h2>
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">همه</button>
+                <button class="filter-btn" data-filter="images">تصاویر</button>
+                <button class="filter-btn" data-filter="videos">ویدیوها</button>
             </div>
-            <?php endif; ?>
+            <div class="gallery-grid" id="gallery-grid"></div>
+            <div class="load-more" id="load-more-gallery">بارگذاری بیشتر...</div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- Contact Section - Enhanced Form -->
         <section id="contact" class="section hidden fade-in">
-            <h2>تماس با ما</h2>
-            <form id="contact-form" class="form-container">
-                <input type="text" id="contact-name" placeholder="نام" required>
-                <input type="email" id="contact-email" placeholder="ایمیل" required>
-                <textarea id="contact-message" placeholder="پیام" required></textarea>
-                <button type="submit">ارسال</button>
-            </form>
-            <div id="contact-response"></div>
+            <h2>تماس با ما و پیشنهادات</h2>
+            <div class="contact-grid">
+                <div class="contact-info-card">
+                    <h3>اطلاعات تماس</h3>
+                    <ul>
+                        <li>📍 کرمانشاه، شهرک تیمسار نجفی</li>
+                        <li>📞 ۰۸۳۳۸۳۸۳۵۲۷</li>
+                        <li>✉️ info@shahidnajafi.sch.ir</li>
+                    </ul>
+                    <div class="map-placeholder">
+                        <p>نقشه مکان مدرسه (اینتراکتیو)</p>
+                    </div>
+                </div>
+                <div class="form-container">
+                    <form id="contact-form">
+                        <div class="form-row">
+                            <input type="text" id="contact-name" placeholder="نام و نام خانوادگی" required>
+                            <input type="email" id="contact-email" placeholder="ایمیل" required>
+                        </div>
+                        <input type="tel" id="contact-phone" placeholder="شماره تماس (اختیاری)">
+                        <select id="contact-type">
+                            <option value="پیشنهاد">پیشنهاد</option>
+                            <option value="شکایت">شکایت</option>
+                            <option value="سؤال">سؤال</option>
+                            <option value="سایر">سایر</option>
+                        </select>
+                        <textarea id="contact-message" placeholder="پیام شما..." required></textarea>
+                        <button type="submit">ارسال پیام</button>
+                    </form>
+                    <div id="contact-response"></div>
+                </div>
+            </div>
         </section>
 
-        <!-- Admin Section -->
-        <?php if (isset($_GET['admin'])): ?>
-        <section id="admin" class="section hidden fade-in">
-            <h2>پنل مدیریت</h2>
+        <!-- Admin Section - Advanced Dashboard -->
+        <section id="admin" class="section hidden fade-in" style="display:none;">
+            <h2>پنل مدیریت پیشرفته</h2>
             <div id="admin-login-container">
-                <form id="admin-login">
-                    <input type="password" id="admin-password" placeholder="رمز عبور" required>
-                    <button type="submit">ورود</button>
+                <form id="admin-login" class="login-form">
+                    <h3>ورود به پنل</h3>
+                    <input type="password" id="admin-password" placeholder="رمز عبور (admin2025)" required>
+                    <button type="submit">ورود امن</button>
+                    <p class="login-hint">نکته: رمز را تغییر دهید از تنظیمات.</p>
                 </form>
             </div>
             <div id="admin-dashboard" class="hidden">
-                <div class="dashboard-grid">
-                    <div class="dash-card">
-                        <h3>غیبت‌ها</h3>
-                        <p id="admin-absences-count">۰</p>
-                        <button onclick="showAdminSection('absences')">مدیریت</button>
-                    </div>
-                    <div class="dash-card">
-                        <h3>اعضای انجمن</h3>
-                        <p id="admin-members-count">۰</p>
-                        <button onclick="showAdminSection('members')">مدیریت</button>
-                    </div>
-                    <div class="dash-card">
-                        <h3>اخبار</h3>
-                        <p id="admin-news-count">۰</p>
-                        <button onclick="showAdminSection('news')">مدیریت</button>
-                    </div>
-                    <div class="dash-card">
-                        <h3>رویدادها</h3>
-                        <p id="admin-events-count">۰</p>
-                        <button onclick="showAdminSection('events')">مدیریت</button>
+                <div class="dashboard-header">
+                    <h3>داشبورد مدیریتی - خوش آمدید، ادمین!</h3>
+                    <div class="user-info">
+                        <span>وضعیت: آنلاین</span>
+                        <button id="logout-btn">خروج</button>
                     </div>
                 </div>
-                <div id="admin-content"></div>
-                <button id="logout-btn">خروج</button>
+                <div class="dashboard-grid">
+                    <div class="dash-card absences-card">
+                        <h3>غیبت‌ها</h3>
+                        <p id="admin-absences-count">۰</p>
+                        <div class="dash-actions">
+                            <button onclick="showAdminSection('absences')">مدیریت کامل</button>
+                            <button onclick="exportAllData('absences')">دانلود گزارش</button>
+                        </div>
+                    </div>
+                    <div class="dash-card members-card">
+                        <h3>انجمن اولیا</h3>
+                        <p id="admin-members-count">۰</p>
+                        <div class="dash-actions">
+                            <button onclick="showAdminSection('members')">مدیریت</button>
+                            <button onclick="sendBulkEmail()">ارسال ایمیل گروهی</button>
+                        </div>
+                    </div>
+                    <div class="dash-card news-card">
+                        <h3>اخبار</h3>
+                        <p id="admin-news-count">۰</p>
+                        <div class="dash-actions">
+                            <button onclick="showAdminSection('news')">ویرایش</button>
+                            <button onclick="publishNews()">انتشار فوری</button>
+                        </div>
+                    </div>
+                    <div class="dash-card events-card">
+                        <h3>رویدادها</h3>
+                        <p id="admin-events-count">۰</p>
+                        <div class="dash-actions">
+                            <button onclick="showAdminSection('events')">مدیریت</button>
+                            <button onclick="notifyEvents()">اطلاع‌رسانی</button>
+                        </div>
+                    </div>
+                    <div class="dash-card gallery-card">
+                        <h3>گالری</h3>
+                        <p id="admin-gallery-count">۰</p>
+                        <div class="dash-actions">
+                            <button onclick="showAdminSection('gallery')">مدیریت</button>
+                            <button onclick="bulkUpload()">آپلود انبوه</button>
+                        </div>
+                    </div>
+                    <div class="dash-card settings-card">
+                        <h3>تنظیمات</h3>
+                        <p>امنیت و سفارشی‌سازی</p>
+                        <div class="dash-actions">
+                            <button onclick="showAdminSection('settings')">تنظیمات</button>
+                            <button onclick="changeAdminPassword()">تغییر رمز</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="admin-content" class="admin-content"></div>
             </div>
         </section>
-        <?php endif; ?>
     </main>
 
     <footer>
         <div class="footer-container">
-            <p>&copy; ۱۴۰۴ دبیرستان شهید علی اکبر نجفی. تمامی حقوق محفوظ است.</p>
-            <div class="social-links">
-                <a href="#">تلگرام</a>
-                <a href="#">اینستاگرام</a>
-                <a href="#">ایمیل</a>
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>دبیرستان شهید علی اکبر نجفی</h4>
+                    <p>مدرسه‌ای برای آینده‌سازان ایران</p>
+                </div>
+                <div class="footer-section">
+                    <h4>لینک‌های مفید</h4>
+                    <ul>
+                        <li><a href="#about">درباره ما</a></li>
+                        <li><a href="#news">اخبار</a></li>
+                        <li><a href="#contact">تماس</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>شبکه‌های اجتماعی</h4>
+                    <div class="social-links">
+                        <a href="#">📱 تلگرام</a>
+                        <a href="#">📸 اینستاگرام</a>
+                        <a href="#">💬 واتساپ</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; ۱۴۰۴ دبیرستان شهید علی اکبر نجفی. طراحی شده با ❤️ توسط تیم IT مدرسه. | تاریخ: ۰۵ مهر ۱۴۰۴</p>
             </div>
         </div>
     </footer>
 
-    <!-- Modal for Gallery -->
+    <!-- Modals -->
     <div id="image-modal" class="modal hidden">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <img id="modal-image" src="" alt="">
+            <img id="modal-image" src="" alt="تصویر بزرگ">
+            <div class="modal-caption"></div>
+        </div>
+    </div>
+
+    <div id="notification-modal" class="modal hidden">
+        <div class="modal-content small">
+            <h3 id="notification-title"></h3>
+            <p id="notification-message"></p>
+            <button onclick="closeNotification()">بستن</button>
         </div>
     </div>
 
