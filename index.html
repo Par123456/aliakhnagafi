@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="وبسایت رسمی دبیرستان شهید علی اکبر نجفی - کرمانشاه | اخبار، رویدادها، غیبت، گالری و دایرکتوری کارکنان">
-    <meta name="keywords" content="دبیرستان شهید نجفی, کرمانشاه, مدرسه, اخبار آموزشی, رویدادها, غیبت">
+    <meta name="description" content="وبسایت رسمی دبیرستان شهید علی اکبر نجفی - کرمانشاه | اخبار، رویدادها، غیبت، گالری، دایرکتوری کارکنان و سیستم نوتیفیکیشن">
+    <meta name="keywords" content="دبیرستان شهید نجفی, کرمانشاه, مدرسه, اخبار آموزشی, رویدادها, غیبت, کارکنان">
     <meta name="author" content="دبیرستان شهید علی اکبر نجفی">
-    <!-- Fixed CSP for Google Fonts -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https: fonts.googleapis.com; font-src 'self' https: fonts.gstatic.com; img-src 'self' data: https:;">
+    <!-- Fixed CSP: Added unsafe-inline for styles/scripts, removed X-Frame meta -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https: fonts.googleapis.com; font-src 'self' https: fonts.gstatic.com; img-src 'self' data: https:;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <!-- Removed X-Frame-Options meta as it must be HTTP header -->
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <title>دبیرستان شهید علی اکبر نجفی | کرمانشاه - ۱۴۰۴</title>
@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Screen - Fixed with Inline Hide -->
+    <!-- Loading Screen - Fixed with Inline Fallback (no inline script violation) -->
     <div id="loader" class="loader">
         <div class="loader-content">
             <div class="spinner"></div>
@@ -164,11 +164,12 @@
                     <a href="#news" class="quick-link" aria-label="اخبار">آخرین اخبار</a>
                     <a href="#gallery" class="quick-link" aria-label="گالری">گالری تصاویر</a>
                     <a href="#contact" class="quick-link" aria-label="تماس">فرم تماس</a>
+                    <a href="#staff" class="quick-link" aria-label="کارکنان">دایرکتوری کارکنان</a>
                 </div>
             </div>
         </section>
 
-        <!-- About Section - Enhanced with Staff Directory -->
+        <!-- About Section -->
         <section id="about" class="section hidden fade-in" aria-labelledby="about-title">
             <h2 id="about-title">درباره دبیرستان شهید علی اکبر نجفی</h2>
             <div class="about-content">
@@ -222,25 +223,39 @@
         <!-- Staff Directory - New Section -->
         <section id="staff" class="section hidden fade-in" aria-labelledby="staff-title">
             <h2 id="staff-title">دایرکتوری کارکنان</h2>
-            <p>لیست کامل معلمان و کارکنان برای دسترسی آسان والدین و دانش‌آموزان.</p>
-            <div class="staff-grid animate-on-scroll">
-                <div class="staff-card">
+            <p>لیست کامل معلمان و کارکنان برای دسترسی آسان والدین و دانش‌آموزان. جستجو و فیلتر موجود است.</p>
+            <div class="staff-controls">
+                <input type="text" id="staff-search" placeholder="جستجو در کارکنان..." oninput="searchStaff()" aria-label="جستجو کارکنان">
+                <select id="staff-filter" onchange="filterStaff()" aria-label="فیلتر">
+                    <option value="all">همه</option>
+                    <option value="معلم">معلمان</option>
+                    <option value="مدیریت">مدیریت</option>
+                </select>
+            </div>
+            <div class="staff-grid animate-on-scroll" id="staff-grid">
+                <div class="staff-card" data-role="معلم">
                     <div class="staff-photo" aria-label="عکس معلم ریاضی">👨‍🏫</div>
                     <h4>آقای احمد کریمی</h4>
                     <p>معلم ریاضی - پایه‌های دهم و یازدهم</p>
                     <p>تلفن: ۰۹۱۸۱۲۳۴۵۶۷ | ایمیل: karimi@shahidnajafi.sch.ir</p>
                 </div>
-                <div class="staff-card">
+                <div class="staff-card" data-role="معلم">
                     <div class="staff-photo" aria-label="عکس معلم فیزیک">👩‍🔬</div>
                     <h4>خانم سارا محمدی</h4>
                     <p>معلم فیزیک - پایه دوازدهم</p>
                     <p>تلفن: ۰۹۱۸۷۶۵۴۳۲۱ | ایمیل: mohammadi@shahidnajafi.sch.ir</p>
                 </div>
-                <div class="staff-card">
+                <div class="staff-card" data-role="مدیریت">
                     <div class="staff-photo" aria-label="عکس مشاور">👨‍⚖️</div>
                     <h4>دکتر رضا احمدی</h4>
                     <p>مشاور تحصیلی</p>
                     <p>تلفن: ۰۹۱۸۹۰۱۲۳۴۵ | ایمیل: ahmadi@shahidnajafi.sch.ir</p>
+                </div>
+                <div class="staff-card" data-role="معلم">
+                    <div class="staff-photo" aria-label="عکس معلم شیمی">🧪</div>
+                    <h4>آقای حسین رضایی</h4>
+                    <p>معلم شیمی - پایه‌های دهم و یازدهم</p>
+                    <p>تلفن: ۰۹۱۸۲۳۴۵۶۷۸ | ایمیل: rezaei@shahidnajafi.sch.ir</p>
                 </div>
             </div>
         </section>
