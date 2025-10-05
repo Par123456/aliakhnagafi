@@ -1,4 +1,4 @@
-/* style.css - Upgraded Cool Styling with Fixes and Enhancements */
+/* style.css - Upgraded Cool Styling with Fixes and Enhancements - Loader Fixed */
 
 :root {
     --primary-color: #004080;
@@ -39,7 +39,7 @@ body {
     text-align: right;
 }
 
-/* Fixed Loader */
+/* Fixed Loader - Immediate Hide */
 .loader {
     position: fixed;
     top: 0;
@@ -55,6 +55,7 @@ body {
 }
 
 .loader.hidden {
+    display: none !important;
     opacity: 0;
     pointer-events: none;
 }
@@ -93,7 +94,7 @@ body {
     background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
     width: 0%;
     transition: width 0.3s ease;
-    animation: progress 2s ease-in-out forwards;
+    animation: progress 1s ease-in-out forwards;
 }
 
 @keyframes progress {
@@ -1061,6 +1062,20 @@ button.danger {
     transform: scale(1.1);
 }
 
+.gallery-item .delete-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--error-color);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
 .load-more {
     display: block;
     margin: 0 auto;
@@ -1411,6 +1426,16 @@ footer {
 }
 
 /* Animations */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(40px);
@@ -1525,7 +1550,7 @@ footer {
 }
 
 @media print {
-    nav, footer, .modal, .admin-section {
+    nav, footer, .modal, #admin {
         display: none;
     }
 
@@ -1591,4 +1616,4 @@ footer {
 .error { border-color: var(--error-color) !important; background: rgba(220,53,69,0.1); }
 .success { border-color: var(--success-color) !important; background: rgba(40,167,69,0.1); }
 
-/* End of CSS - Upgraded with slider, search, pagination, animations, responsive fixes, and loader progress. */
+/* End of CSS - Loader fixed with display: none and shorter animation. */
