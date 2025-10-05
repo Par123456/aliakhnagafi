@@ -247,7 +247,7 @@ function updateVisitorStats() {
         document.getElementById('today-visits').textContent = visitorData[today] || 0;
         document.getElementById('week-visits').textContent = visitorData[weekKey] || 0;
         document.getElementById('month-visits').textContent = visitorData[monthKey] || 0;
-        document.getElementById('total-visits').textContent = visitorData.total || 0;
+        document.getElementById('total-visits').textContent = visitorData[totalKey] || 0;
     } catch (e) {
         console.error('Update stats error:', e);
     }
