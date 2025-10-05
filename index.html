@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="وبسایت رسمی دبیرستان شهید علی اکبر نجفی - کرمانشاه | اخبار، رویدادها، غیبت، گالری و دایرکتوری کارکنان">
-    <meta name="keywords" content="دبیرستان شهید نجفی, کرمانشاه, مدرسه, اخبار آموزشی, رویدادها, غیبت">
+    <meta name="description" content="وبسایت رسمی دبیرستان شهید علی اکبر نجفی - کرمانشاه | اخبار، رویدادها، غیبت، گالری، دایرکتوری کارکنان و سیستم نوتیفیکیشن">
+    <meta name="keywords" content="دبیرستان شهید نجفی, کرمانشاه, مدرسه, اخبار آموزشی, رویدادها, غیبت, کارکنان">
     <meta name="author" content="دبیرستان شهید علی اکبر نجفی">
-    <!-- Fixed CSP for Google Fonts -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https: fonts.googleapis.com; font-src 'self' https: fonts.gstatic.com; img-src 'self' data: https:;">
+    <!-- Fixed CSP: Added unsafe-inline for styles/scripts, removed X-Frame meta -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https: fonts.googleapis.com; font-src 'self' https: fonts.gstatic.com; img-src 'self' data: https:;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <!-- Removed X-Frame-Options meta as it must be HTTP header -->
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <title>دبیرستان شهید علی اکبر نجفی | کرمانشاه - ۱۴۰۴</title>
@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Screen - Fixed with Inline Hide -->
+    <!-- Loading Screen - Fixed with Inline Fallback (no inline script violation) -->
     <div id="loader" class="loader">
         <div class="loader-content">
             <div class="spinner"></div>
@@ -30,6 +30,7 @@
         </div>
     </div>
 
+    
     <header class="header">
         <div class="header-overlay"></div>
         <div class="header-container">
@@ -511,3 +512,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
