@@ -475,19 +475,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Lightbox Navigation (Adjusted for RTL convention: prev button shows previous logical image)
-    // In RTL, a visually "right" arrow (prev) should go to the previous item logically.
-    // A visually "left" arrow (next) should go to the next item logically.
-    if (lightboxPrev) { // This is the 'right' arrow in LTR display, for RTL, it should go to logically previous image
+    // Lightbox Navigation (Adjusted for RTL convention: prev button shows next image logically)
+    if (lightboxPrev) { // This is the 'right' arrow in LTR, but 'prev' button visually
         lightboxPrev.addEventListener('click', (e) => {
             e.stopPropagation(); // Prevent closing lightbox if click outside image
-            showLightboxImage(currentImageIndex - 1); // Decrement index for previous image
+            showLightboxImage(currentImageIndex + 1); // For RTL, clicking 'prev' (right arrow) usually means moving to the next item
         });
     }
-    if (lightboxNext) { // This is the 'left' arrow in LTR display, for RTL, it should go to logically next image
+    if (lightboxNext) { // This is the 'left' arrow in LTR, but 'next' button visually
         lightboxNext.addEventListener('click', (e) => {
             e.stopPropagation(); // Prevent closing lightbox
-            showLightboxImage(currentImageIndex + 1); // Increment index for next image
+            showLightboxImage(currentImageIndex - 1); // For RTL, clicking 'next' (left arrow) usually means moving to the previous item
         });
     }
     // Close lightbox on outside click (excluding nav buttons)
@@ -503,10 +501,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (lightbox && lightbox.classList.contains('active')) {
             if (e.key === 'Escape') {
                 lightbox.classList.remove('active');
-            } else if (e.key === 'ArrowRight') { // For RTL, ArrowRight (visual right) should go to logically previous
-                showLightboxImage(currentImageIndex - 1);
-            } else if (e.key === 'ArrowLeft') { // For RTL, ArrowLeft (visual left) should go to logically next
-                showLightboxImage(currentImageIndex + 1);
+            } else if (e.key === 'ArrowLeft') { // For RTL, ArrowLeft (visual left) is often treated as "next"
+                showLightboxImage(currentImageIndex - 1); // Previous image logically in LTR, but visually 'next' in RTL gallery
+            } else if (e.key === 'ArrowRight') { // For RTL, ArrowRight (visual right) is often treated as "previous"
+                showLightboxImage(currentImageIndex + 1); // Next image logically in LTR, but visually 'prev' in RTL gallery
             }
         }
     });
@@ -1018,26 +1016,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (adminGalleryForm) {
-    adminGalleryForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const imageUrl = adminGalleryImageUrl ? adminGalleryImageUrl.value.trim() : '';
+        adminGalleryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const imageUrl = adminGalleryImageUrl ? adminGalleryImageUrl.value.trim() : '';
 
-        if (!imageUrl) {
-            alert('لطفاً لینک تصویر را وارد کنید.');
-            return;
-        }
+            if (!imageUrl) {
+                alert('لطفاً لینک تصویر را وارد کنید.');
+                return;
+            }
 
-        // Simple check for duplicate, though direct equality might be too strict for URLs
-        if (!galleryImages.includes(imageUrl)) {
-            galleryImages.push(imageUrl); // Add new image URL
-            saveToLocalStorage('galleryImages', galleryImages);
-            renderAdminGalleryList();
-            adminGalleryForm.reset();
-            alert('تصویر به گالری اضافه شد.');
-        } else {
-            alert('این تصویر از قبل در گالری موجود است.');
-        }
-    });
+            // Simple check for duplicate, though direct equality might be too strict for URLs
+            if (!galleryImages.includes(imageUrl)) {
+                galleryImages.push(imageUrl); // Add new image URL
+                saveToLocalStorage('galleryImages', galleryImages);
+                renderAdminGalleryList();
+                adminGalleryForm.reset();
+                alert('تصویر به گالری اضافه شد.');
+            } else {
+                alert('این تصویر از قبل در گالری موجود است.');
+            }
+        });
     }
 
     if (adminGalleryList) {
