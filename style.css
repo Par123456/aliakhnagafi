@@ -1,3 +1,4 @@
+
 /* Global Reset & Base Styles */
 :root {
     --primary-blue: #0D47A1; /* Dark Blue - inspired by school-like colors */
@@ -977,6 +978,7 @@ ul {
     border-radius: var(--border-radius);
     font-family: 'Vazirmatn', sans-serif;
     font-size: 1em;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
     text-align: right; /* RTL */
 }
 
@@ -1132,6 +1134,7 @@ textarea {
 
 /* Admin Panel Styles */
 .admin-overlay {
+    display: none; /* Hidden by default */
     position: fixed;
     top: 0;
     left: 0;
@@ -1139,11 +1142,12 @@ textarea {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 3000; /* Highest z-index */
+    /* Updated for better centering and overflow handling */
+    display: flex; /* Make it a flex container */
     justify-content: center; /* Center horizontally */
     align-items: flex-start; /* Align to top, allow content to scroll down */
     overflow-y: auto; /* Allow scrolling for content that exceeds viewport height */
     padding: 20px 0; /* Add some vertical padding */
-    display: none; /* Hidden by default - این خط به درستی موقعیت‌یابی شد */
 }
 
 .admin-panel {
